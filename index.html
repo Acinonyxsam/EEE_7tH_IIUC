@@ -5,7 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>EEE 7th Semester — IIUC Study Hub</title>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
+    /* ================================================================
+       ORIGINAL DESIGN — UNTOUCHED
+    ================================================================ */
     :root {
       --bg: #0b0f1a;
       --surface: #111827;
@@ -31,11 +35,8 @@
       --red: #ff6b6b;
       --red-soft: rgba(255,107,107,0.1);
     }
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; }
-
     body {
       background: var(--bg);
       color: var(--text);
@@ -44,8 +45,6 @@
       line-height: 1.6;
       overflow-x: hidden;
     }
-
-    /* ─── BACKGROUND GRID ─── */
     body::before {
       content: '';
       position: fixed;
@@ -57,329 +56,115 @@
       pointer-events: none;
       z-index: 0;
     }
-
-    /* Ambient glow blobs */
-    .glow-blob {
-      position: fixed;
-      border-radius: 50%;
-      filter: blur(120px);
-      pointer-events: none;
-      z-index: 0;
-    }
+    .glow-blob { position: fixed; border-radius: 50%; filter: blur(120px); pointer-events: none; z-index: 0; }
     .glow-blob-1 { width: 500px; height: 500px; background: rgba(79,142,247,0.07); top: -100px; right: -100px; }
     .glow-blob-2 { width: 400px; height: 400px; background: rgba(0,229,160,0.06); bottom: 200px; left: -100px; }
 
-    /* ─── NAV ─── */
     nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(11,15,26,0.85);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
-      padding: 0 2rem;
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(11,15,26,0.85); backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border); padding: 0 2rem;
     }
     .nav-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 62px;
-      gap: 1rem;
+      max-width: 1100px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 62px; gap: 1rem;
     }
-    .nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
     .nav-logo-icon {
       width: 34px; height: 34px;
       background: linear-gradient(135deg, var(--blue), var(--green));
-      border-radius: 9px;
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700;
-      font-size: 0.75rem;
-      color: #fff;
-      letter-spacing: 0.01em;
-      flex-shrink: 0;
+      border-radius: 9px; display: flex; align-items: center; justify-content: center;
+      font-family: 'Space Grotesk', sans-serif; font-weight: 700;
+      font-size: 0.75rem; color: #fff; letter-spacing: 0.01em; flex-shrink: 0;
     }
-    .nav-logo-text {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700;
-      font-size: 0.95rem;
-      color: var(--text);
-      letter-spacing: 0.01em;
-    }
+    .nav-logo-text { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.95rem; color: var(--text); letter-spacing: 0.01em; }
     .nav-logo-text span { color: var(--green); }
-    .nav-right {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
+    .nav-right { display: flex; align-items: center; gap: 0.5rem; }
     .nav-pill {
-      font-size: 0.72rem;
-      font-weight: 600;
-      padding: 5px 12px;
-      border-radius: 100px;
-      border: 1px solid var(--border-bright);
-      color: var(--text-muted);
-      background: var(--surface);
-      white-space: nowrap;
+      font-size: 0.72rem; font-weight: 600; padding: 5px 12px;
+      border-radius: 100px; border: 1px solid var(--border-bright);
+      color: var(--text-muted); background: var(--surface); white-space: nowrap;
     }
-    .nav-pill.active {
-      background: var(--green-soft);
-      border-color: var(--green);
-      color: var(--green);
-    }
+    .nav-pill.active { background: var(--green-soft); border-color: var(--green); color: var(--green); }
     .live-dot {
-      display: inline-block;
-      width: 6px; height: 6px;
-      background: var(--green);
-      border-radius: 50%;
-      margin-right: 5px;
-      animation: blink 1.8s infinite;
+      display: inline-block; width: 6px; height: 6px; background: var(--green);
+      border-radius: 50%; margin-right: 5px; animation: blink 1.8s infinite;
     }
     @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
 
-    /* ─── MAIN WRAPPER ─── */
-    main {
-      position: relative;
-      z-index: 1;
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 1.5rem 6rem;
-    }
+    main { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 0 1.5rem 6rem; }
 
-    /* ─── HERO SECTION ─── */
-    .hero {
-      padding: 5rem 0 3.5rem;
-      animation: fadeUp 0.6s ease both;
-    }
+    .hero { padding: 5rem 0 3.5rem; animation: fadeUp 0.6s ease both; }
     .hero-eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--blue);
-      border: 1px solid rgba(79,142,247,0.3);
-      background: var(--blue-soft);
-      padding: 6px 14px;
-      border-radius: 100px;
-      margin-bottom: 1.5rem;
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--blue); border: 1px solid rgba(79,142,247,0.3);
+      background: var(--blue-soft); padding: 6px 14px; border-radius: 100px; margin-bottom: 1.5rem;
     }
     .hero h1 {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(2.2rem, 5.5vw, 3.8rem);
-      font-weight: 700;
-      line-height: 1.1;
-      letter-spacing: -0.02em;
-      margin-bottom: 1rem;
+      font-size: clamp(2.2rem, 5.5vw, 3.8rem); font-weight: 700;
+      line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 1rem;
     }
     .hero h1 .highlight {
       background: linear-gradient(90deg, var(--blue), var(--green));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
-    .hero-desc {
-      font-size: 1.05rem;
-      color: var(--text-muted);
-      font-weight: 400;
-      max-width: 560px;
-      margin-bottom: 2.5rem;
-    }
+    .hero-desc { font-size: 1.05rem; color: var(--text-muted); font-weight: 400; max-width: 560px; margin-bottom: 2.5rem; }
+    .hero-stats { display: flex; gap: 2rem; flex-wrap: wrap; }
+    .stat-item { display: flex; flex-direction: column; }
+    .stat-num { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--text); line-height: 1; }
+    .stat-label { font-size: 0.72rem; color: var(--text-muted); font-weight: 500; letter-spacing: 0.05em; margin-top: 3px; }
+    .stat-divider { width: 1px; height: 40px; background: var(--border-bright); align-self: center; }
 
-    .hero-stats {
-      display: flex;
-      gap: 2rem;
-      flex-wrap: wrap;
-    }
-    .stat-item {
-      display: flex;
-      flex-direction: column;
-    }
-    .stat-num {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--text);
-      line-height: 1;
-    }
-    .stat-label {
-      font-size: 0.72rem;
-      color: var(--text-muted);
-      font-weight: 500;
-      letter-spacing: 0.05em;
-      margin-top: 3px;
-    }
-    .stat-divider {
-      width: 1px;
-      height: 40px;
-      background: var(--border-bright);
-      align-self: center;
-    }
-
-    /* ─── SEMESTER PROGRESS ─── */
     .semester-bar-section {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 1.5rem 2rem;
-      margin-bottom: 3rem;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 18px; padding: 1.5rem 2rem; margin-bottom: 3rem;
       animation: fadeUp 0.6s 0.1s ease both;
     }
-    .semester-bar-label {
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 1rem;
-    }
-    .semester-steps {
-      display: flex;
-      align-items: center;
-      gap: 0;
-      overflow-x: auto;
-      padding-bottom: 4px;
-    }
-    .semester-step {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
-      flex: 1;
-      min-width: 60px;
-      position: relative;
-      cursor: default;
-    }
-    .semester-step::after {
-      content: '';
-      position: absolute;
-      top: 15px;
-      left: 50%;
-      width: 100%;
-      height: 2px;
-      background: var(--border-bright);
-      z-index: 0;
-    }
+    .semester-bar-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1rem; }
+    .semester-steps { display: flex; align-items: center; overflow-x: auto; padding-bottom: 4px; }
+    .semester-step { display: flex; flex-direction: column; align-items: center; gap: 6px; flex: 1; min-width: 60px; position: relative; cursor: default; }
+    .semester-step::after { content: ''; position: absolute; top: 15px; left: 50%; width: 100%; height: 2px; background: var(--border-bright); z-index: 0; }
     .semester-step:last-child::after { display: none; }
     .step-circle {
-      width: 30px; height: 30px;
-      border-radius: 50%;
+      width: 30px; height: 30px; border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.72rem;
-      font-weight: 700;
-      position: relative;
-      z-index: 1;
-      border: 2px solid var(--border-bright);
-      background: var(--bg);
-      color: var(--text-muted);
-      transition: all 0.2s;
+      font-family: 'Space Grotesk', sans-serif; font-size: 0.72rem; font-weight: 700;
+      position: relative; z-index: 1; border: 2px solid var(--border-bright);
+      background: var(--bg); color: var(--text-muted); transition: all 0.2s;
     }
-    .semester-step.done .step-circle {
-      background: var(--surface2);
-      border-color: var(--blue);
-      color: var(--blue);
-    }
+    .semester-step.done .step-circle { background: var(--surface2); border-color: var(--blue); color: var(--blue); }
     .semester-step.current .step-circle {
       background: linear-gradient(135deg, var(--blue), var(--green));
-      border-color: transparent;
-      color: #fff;
-      box-shadow: 0 0 20px var(--green-glow);
+      border-color: transparent; color: #fff; box-shadow: 0 0 20px var(--green-glow);
     }
-    .semester-step::after {
-      background: var(--border-bright);
-    }
-    .semester-step.done::after {
-      background: linear-gradient(90deg, var(--blue), rgba(79,142,247,0.3));
-    }
-    .step-num {
-      font-size: 0.62rem;
-      font-weight: 600;
-      color: var(--text-dim);
-      white-space: nowrap;
-    }
+    .semester-step.done::after { background: linear-gradient(90deg, var(--blue), rgba(79,142,247,0.3)); }
+    .step-num { font-size: 0.62rem; font-weight: 600; color: var(--text-dim); white-space: nowrap; }
     .semester-step.current .step-num { color: var(--green); }
     .semester-step.done .step-num { color: var(--blue); }
 
-    /* ─── SECTION TITLES ─── */
-    .section-header {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 1.5rem;
-    }
-    .section-icon {
-      width: 38px; height: 38px;
-      border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.1rem;
-      flex-shrink: 0;
-    }
-    .section-title {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.15rem;
-      font-weight: 700;
-      letter-spacing: -0.01em;
-    }
-    .section-subtitle {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      margin-top: 1px;
-    }
-    .section-divider {
-      flex: 1;
-      height: 1px;
-      background: var(--border);
-      margin-left: 1rem;
-    }
+    .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 1.5rem; }
+    .section-icon { width: 38px; height: 38px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+    .section-title { font-family: 'Space Grotesk', sans-serif; font-size: 1.15rem; font-weight: 700; letter-spacing: -0.01em; }
+    .section-subtitle { font-size: 0.78rem; color: var(--text-muted); margin-top: 1px; }
+    .section-divider { flex: 1; height: 1px; background: var(--border); margin-left: 1rem; }
 
-    /* ─── COURSE CARDS ─── */
     .courses-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 1.2rem;
-      margin-bottom: 3.5rem;
-      animation: fadeUp 0.6s 0.2s ease both;
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.2rem; margin-bottom: 3.5rem; animation: fadeUp 0.6s 0.2s ease both;
     }
-
+    /* course-card is now a button-like div (not <a>) */
     .course-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 1.6rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      transition: transform 0.25s cubic-bezier(.22,.68,0,1.2), box-shadow 0.25s, border-color 0.25s;
-      position: relative;
-      overflow: hidden;
-      text-decoration: none;
-      color: inherit;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 18px; padding: 1.6rem; display: flex; flex-direction: column;
+      gap: 1rem; transition: transform 0.25s cubic-bezier(.22,.68,0,1.2), box-shadow 0.25s, border-color 0.25s;
+      position: relative; overflow: hidden; cursor: pointer; color: inherit;
     }
-    .course-card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      opacity: 0;
-      transition: opacity 0.3s;
-      border-radius: inherit;
-    }
-    .course-card:hover {
-      transform: translateY(-4px) scale(1.01);
-      border-color: var(--border-bright);
-    }
+    .course-card::before { content: ''; position: absolute; inset: 0; opacity: 0; transition: opacity 0.3s; border-radius: inherit; }
+    .course-card:hover { transform: translateY(-4px) scale(1.01); border-color: var(--border-bright); }
     .course-card:hover::before { opacity: 1; }
-
-    /* Color themes */
     .card-green::before { background: radial-gradient(ellipse at top left, var(--green-soft), transparent 60%); }
     .card-green:hover { box-shadow: 0 12px 40px rgba(0,229,160,0.12); border-color: rgba(0,229,160,0.25); }
     .card-blue::before { background: radial-gradient(ellipse at top left, var(--blue-soft), transparent 60%); }
@@ -393,247 +178,76 @@
     .card-pink::before { background: radial-gradient(ellipse at top left, var(--pink-soft), transparent 60%); }
     .card-pink:hover { box-shadow: 0 12px 40px rgba(244,114,182,0.12); border-color: rgba(244,114,182,0.25); }
 
-    .card-top {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      position: relative;
-      z-index: 1;
-    }
-    .card-icon-wrap {
-      width: 46px; height: 46px;
-      border-radius: 13px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.35rem;
-      flex-shrink: 0;
-    }
+    .card-top { display: flex; align-items: flex-start; justify-content: space-between; position: relative; z-index: 1; }
+    .card-icon-wrap { width: 46px; height: 46px; border-radius: 13px; display: flex; align-items: center; justify-content: center; font-size: 1.35rem; flex-shrink: 0; }
     .icon-green { background: var(--green-soft); }
-    .icon-blue { background: var(--blue-soft); }
-    .icon-gold { background: var(--gold-soft); }
-    .icon-purple { background: var(--purple-soft); }
-    .icon-orange { background: var(--orange-soft); }
-    .icon-pink { background: var(--pink-soft); }
-
-    .card-badge {
-      font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 4px 10px;
-      border-radius: 100px;
-    }
-    .badge-green { background: var(--green-soft); color: var(--green); border: 1px solid rgba(0,229,160,0.3); }
-    .badge-blue { background: var(--blue-soft); color: var(--blue); border: 1px solid rgba(79,142,247,0.3); }
-    .badge-gold { background: var(--gold-soft); color: var(--gold); border: 1px solid rgba(245,200,66,0.3); }
+    .icon-blue  { background: var(--blue-soft);  }
+    .icon-gold  { background: var(--gold-soft);  }
+    .icon-purple{ background: var(--purple-soft);}
+    .icon-orange{ background: var(--orange-soft);}
+    .icon-pink  { background: var(--pink-soft);  }
+    .card-badge { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 10px; border-radius: 100px; }
+    .badge-green  { background: var(--green-soft);  color: var(--green);  border: 1px solid rgba(0,229,160,0.3); }
+    .badge-blue   { background: var(--blue-soft);   color: var(--blue);   border: 1px solid rgba(79,142,247,0.3); }
+    .badge-gold   { background: var(--gold-soft);   color: var(--gold);   border: 1px solid rgba(245,200,66,0.3); }
     .badge-purple { background: var(--purple-soft); color: var(--purple); border: 1px solid rgba(167,139,250,0.3); }
     .badge-orange { background: var(--orange-soft); color: var(--orange); border: 1px solid rgba(251,140,60,0.3); }
-    .badge-pink { background: var(--pink-soft); color: var(--pink); border: 1px solid rgba(244,114,182,0.3); }
-
+    .badge-pink   { background: var(--pink-soft);   color: var(--pink);   border: 1px solid rgba(244,114,182,0.3); }
     .card-body { position: relative; z-index: 1; }
-    .card-code {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      color: var(--text-muted);
-      margin-bottom: 5px;
-    }
-    .card-title {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--text);
-      line-height: 1.25;
-    }
-
-    .card-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding-top: 0.8rem;
-      border-top: 1px solid var(--border);
-      position: relative;
-      z-index: 1;
-    }
-    .card-link-text {
-      font-size: 0.78rem;
-      font-weight: 600;
-      color: var(--text-muted);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .card-arrow {
-      width: 30px; height: 30px;
-      border-radius: 8px;
-      display: flex; align-items: center; justify-content: center;
-      transition: transform 0.2s, background 0.2s;
-    }
+    .card-code { font-family: 'Space Grotesk', sans-serif; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 5px; }
+    .card-title { font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--text); line-height: 1.25; }
+    .card-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 0.8rem; border-top: 1px solid var(--border); position: relative; z-index: 1; }
+    .card-link-text { font-size: 0.78rem; font-weight: 600; color: var(--text-muted); display: flex; align-items: center; gap: 6px; }
+    .card-arrow { width: 30px; height: 30px; border-radius: 8px; display: flex; align-items: center; justify-content: center; transition: transform 0.2s; }
     .course-card:hover .card-arrow { transform: translate(2px, -2px); }
-    .arrow-green { background: var(--green-soft); color: var(--green); }
-    .arrow-blue { background: var(--blue-soft); color: var(--blue); }
-    .arrow-gold { background: var(--gold-soft); color: var(--gold); }
+    .arrow-green  { background: var(--green-soft);  color: var(--green);  }
+    .arrow-blue   { background: var(--blue-soft);   color: var(--blue);   }
+    .arrow-gold   { background: var(--gold-soft);   color: var(--gold);   }
     .arrow-purple { background: var(--purple-soft); color: var(--purple); }
     .arrow-orange { background: var(--orange-soft); color: var(--orange); }
-    .arrow-pink { background: var(--pink-soft); color: var(--pink); }
+    .arrow-pink   { background: var(--pink-soft);   color: var(--pink);   }
 
-    /* ─── EXTRA RESOURCES ─── */
-    .resources-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 1rem;
-      margin-bottom: 3.5rem;
-      animation: fadeUp 0.6s 0.3s ease both;
-    }
+    .resources-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; margin-bottom: 3.5rem; animation: fadeUp 0.6s 0.3s ease both; }
     .resource-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 1.4rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      text-decoration: none;
-      color: inherit;
+      background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+      padding: 1.4rem; display: flex; align-items: center; gap: 1rem;
+      text-decoration: none; color: inherit;
       transition: transform 0.22s cubic-bezier(.22,.68,0,1.2), box-shadow 0.22s, border-color 0.22s;
     }
-    .resource-card:hover {
-      transform: translateY(-3px) scale(1.01);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-      border-color: var(--border-bright);
-    }
-    .resource-icon {
-      width: 44px; height: 44px;
-      border-radius: 12px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.25rem;
-      flex-shrink: 0;
-    }
+    .resource-card:hover { transform: translateY(-3px) scale(1.01); box-shadow: 0 10px 30px rgba(0,0,0,0.3); border-color: var(--border-bright); }
+    .resource-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; flex-shrink: 0; }
     .resource-text { flex: 1; }
-    .resource-title {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700;
-      font-size: 0.95rem;
-      color: var(--text);
-      margin-bottom: 3px;
-    }
-    .resource-desc {
-      font-size: 0.73rem;
-      color: var(--text-muted);
-    }
-    .resource-arrow {
-      color: var(--text-dim);
-      transition: transform 0.2s, color 0.2s;
-    }
+    .resource-title { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.95rem; color: var(--text); margin-bottom: 3px; }
+    .resource-desc { font-size: 0.73rem; color: var(--text-muted); }
+    .resource-arrow { color: var(--text-dim); transition: transform 0.2s, color 0.2s; }
     .resource-card:hover .resource-arrow { transform: translate(3px,-3px); color: var(--text-muted); }
 
-    /* ─── NOTICE BANNER ─── */
     .notice-banner {
       background: linear-gradient(135deg, rgba(245,200,66,0.08), rgba(251,140,60,0.06));
-      border: 1px solid rgba(245,200,66,0.2);
-      border-radius: 16px;
-      padding: 1.2rem 1.6rem;
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
-      margin-bottom: 4rem;
-      animation: fadeUp 0.6s 0.4s ease both;
+      border: 1px solid rgba(245,200,66,0.2); border-radius: 16px;
+      padding: 1.2rem 1.6rem; display: flex; align-items: flex-start;
+      gap: 1rem; margin-bottom: 4rem; animation: fadeUp 0.6s 0.4s ease both;
     }
-    .notice-icon {
-      font-size: 1.3rem;
-      flex-shrink: 0;
-      margin-top: 1px;
-    }
+    .notice-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 1px; }
     .notice-content { flex: 1; }
-    .notice-title {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700;
-      font-size: 0.88rem;
-      color: var(--gold);
-      margin-bottom: 4px;
-      letter-spacing: 0.01em;
-    }
-    .notice-text {
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      line-height: 1.55;
-    }
+    .notice-title { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.88rem; color: var(--gold); margin-bottom: 4px; letter-spacing: 0.01em; }
+    .notice-text { font-size: 0.82rem; color: var(--text-muted); line-height: 1.55; }
     .notice-text strong { color: var(--text); }
 
-    /* ─── FOOTER ─── */
-    footer {
-      position: relative;
-      z-index: 1;
-      border-top: 1px solid var(--border);
-      padding: 3rem 1.5rem 2.5rem;
-      max-width: 1100px;
-      margin: 0 auto;
-      animation: fadeUp 0.6s 0.5s ease both;
-    }
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 2rem;
-      align-items: start;
-      flex-wrap: wrap;
-    }
-    .footer-left .footer-name {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 4px;
-    }
-    .footer-left .footer-id {
-      font-size: 0.78rem;
-      color: var(--green);
-      font-weight: 600;
-      font-family: 'Space Grotesk', sans-serif;
-      margin-bottom: 0.6rem;
-    }
-    .footer-left .footer-email {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-    }
-    .footer-left .footer-email a {
-      color: var(--blue);
-      text-decoration: none;
-    }
+    footer { position: relative; z-index: 1; border-top: 1px solid var(--border); padding: 3rem 1.5rem 2.5rem; max-width: 1100px; margin: 0 auto; animation: fadeUp 0.6s 0.5s ease both; }
+    .footer-grid { display: grid; grid-template-columns: 1fr auto; gap: 2rem; align-items: start; }
+    .footer-left .footer-name { font-family: 'Space Grotesk', sans-serif; font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+    .footer-left .footer-id { font-size: 0.78rem; color: var(--green); font-weight: 600; font-family: 'Space Grotesk', sans-serif; margin-bottom: 0.6rem; }
+    .footer-left .footer-email { font-size: 0.8rem; color: var(--text-muted); }
+    .footer-left .footer-email a { color: var(--blue); text-decoration: none; }
     .footer-left .footer-email a:hover { text-decoration: underline; }
-    .footer-right {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 6px;
-    }
-    .footer-uni {
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--text-dim);
-    }
-    .footer-dept {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      text-align: right;
-    }
-    .footer-copy {
-      margin-top: 2rem;
-      padding-top: 1rem;
-      border-top: 1px solid var(--border);
-      font-size: 0.72rem;
-      color: var(--text-dim);
-      text-align: center;
-    }
+    .footer-right { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+    .footer-uni { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-dim); }
+    .footer-dept { font-size: 0.78rem; color: var(--text-muted); text-align: right; }
+    .footer-copy { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--border); font-size: 0.72rem; color: var(--text-dim); text-align: center; }
 
-    /* ─── ANIMATIONS ─── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(22px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
 
-    /* ─── RESPONSIVE ─── */
     @media (max-width: 640px) {
       .hero { padding: 3rem 0 2rem; }
       .hero h1 { font-size: 2rem; }
@@ -644,6 +258,283 @@
       .hero-stats { gap: 1.2rem; }
       .semester-bar-section { padding: 1.2rem; }
     }
+
+    /* ================================================================
+       NEW: SEARCH BAR
+    ================================================================ */
+    .search-wrap {
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.6s 0.15s ease both;
+    }
+    .search-box {
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.75rem 1rem 0.75rem 2.8rem;
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%238894aa' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: 0.85rem center;
+    }
+    .search-box::placeholder { color: var(--text-dim); }
+    .search-box:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(79,142,247,0.12); }
+
+    /* ================================================================
+       NEW: COURSE MODAL OVERLAY
+    ================================================================ */
+    .modal-overlay {
+      position: fixed; inset: 0; z-index: 200;
+      background: rgba(7,10,20,0.88);
+      backdrop-filter: blur(8px);
+      display: flex; align-items: flex-start; justify-content: center;
+      padding: 2rem 1rem;
+      overflow-y: auto;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.28s ease;
+    }
+    .modal-overlay.open { opacity: 1; pointer-events: all; }
+
+    .modal-panel {
+      background: var(--surface);
+      border: 1px solid var(--border-bright);
+      border-radius: 24px;
+      width: 100%; max-width: 820px;
+      position: relative;
+      transform: translateY(28px) scale(0.97);
+      transition: transform 0.3s cubic-bezier(.22,.68,0,1.15), opacity 0.28s ease;
+      opacity: 0;
+      overflow: hidden;
+    }
+    .modal-overlay.open .modal-panel { transform: translateY(0) scale(1); opacity: 1; }
+
+    /* coloured top bar per course */
+    .modal-header-bar {
+      height: 4px;
+      background: linear-gradient(90deg, var(--blue), var(--green));
+    }
+    .modal-header {
+      padding: 1.6rem 1.8rem 1.2rem;
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem;
+    }
+    .modal-title-group { display: flex; align-items: center; gap: 1rem; }
+    .modal-icon { width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; }
+    .modal-course-code { font-family: 'Space Grotesk', sans-serif; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 3px; }
+    .modal-course-name { font-family: 'Space Grotesk', sans-serif; font-size: 1.25rem; font-weight: 700; line-height: 1.2; }
+    .modal-close {
+      width: 36px; height: 36px; border-radius: 10px;
+      background: var(--surface2); border: 1px solid var(--border);
+      color: var(--text-muted); cursor: pointer; display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; transition: background 0.2s, color 0.2s;
+    }
+    .modal-close:hover { background: var(--red-soft); color: var(--red); border-color: var(--red); }
+    .modal-drive-link {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-size: 0.75rem; font-weight: 600; color: var(--text-muted);
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 8px; padding: 5px 12px; text-decoration: none;
+      transition: color 0.2s, border-color 0.2s;
+      margin-top: 8px;
+    }
+    .modal-drive-link:hover { color: var(--blue); border-color: var(--blue); }
+
+    /* ── TABS ── */
+    .modal-tabs {
+      display: flex; gap: 4px; padding: 1rem 1.8rem 0;
+      border-bottom: 1px solid var(--border);
+      overflow-x: auto;
+    }
+    .tab-btn {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.82rem; font-weight: 600;
+      padding: 0.55rem 1rem; border-radius: 9px 9px 0 0;
+      border: none; cursor: pointer;
+      background: transparent; color: var(--text-muted);
+      transition: background 0.18s, color 0.18s;
+      white-space: nowrap;
+      position: relative; bottom: -1px;
+      border-bottom: 2px solid transparent;
+    }
+    .tab-btn:hover { color: var(--text); }
+    .tab-btn.active {
+      color: var(--text);
+      border-bottom: 2px solid var(--blue);
+      background: var(--surface2);
+    }
+    .tab-btn .tab-count {
+      display: inline-block; margin-left: 5px;
+      background: var(--surface2); color: var(--text-muted);
+      font-size: 0.62rem; font-weight: 700;
+      padding: 1px 6px; border-radius: 100px;
+    }
+    .tab-btn.active .tab-count { background: var(--blue-soft); color: var(--blue); }
+
+    /* ── TAB PANELS ── */
+    .modal-body { padding: 1.4rem 1.8rem 1.8rem; }
+    /* ── FIX: SMOOTH TAB TRANSITIONS (0.3s ease-in-out) ── */
+    .tab-panel {
+      display: none;
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    .tab-panel.active {
+      display: block;
+      animation: tabFadeIn 0.3s ease-in-out both;
+    }
+    @keyframes tabFadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0);   }
+    }
+
+    /* ── MODAL SEARCH ── */
+    .modal-search-wrap { margin-bottom: 1.2rem; }
+    .modal-search-box {
+      width: 100%;
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 10px; padding: 0.6rem 0.9rem 0.6rem 2.4rem;
+      color: var(--text); font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.83rem; outline: none;
+      transition: border-color 0.2s;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%238894aa' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: 0.7rem center;
+    }
+    .modal-search-box::placeholder { color: var(--text-dim); }
+    .modal-search-box:focus { border-color: var(--blue); }
+
+    /* ── ACCORDION ── */
+    .accordion { display: flex; flex-direction: column; gap: 0.6rem; }
+    .accordion-item { background: var(--surface2); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }
+    .accordion-trigger {
+      width: 100%; display: flex; align-items: center; justify-content: space-between;
+      padding: 0.95rem 1.2rem; cursor: pointer; background: none; border: none;
+      color: var(--text); font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.9rem; font-weight: 600; text-align: left;
+      transition: background 0.18s;
+      gap: 0.5rem;
+    }
+    .accordion-trigger:hover { background: rgba(255,255,255,0.03); }
+    .accordion-trigger-left { display: flex; align-items: center; gap: 10px; }
+    .accordion-label-icon { font-size: 1rem; }
+    .accordion-chevron {
+      transition: transform 0.28s cubic-bezier(.22,.68,0,1.2);
+      color: var(--text-muted); flex-shrink: 0;
+    }
+    .accordion-item.open .accordion-chevron { transform: rotate(180deg); }
+    .accordion-count {
+      font-size: 0.62rem; font-weight: 700; padding: 2px 7px; border-radius: 100px;
+      background: var(--surface); color: var(--text-muted); margin-left: 4px;
+    }
+    .accordion-body {
+      max-height: 0; overflow: hidden;
+      /* FIX: smooth 0.3s ease-in-out accordion expand/collapse */
+      transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out;
+      padding: 0 1.2rem;
+    }
+    .accordion-item.open .accordion-body { max-height: 1200px; padding: 0 1.2rem 1.2rem; }
+
+    /* ── PDF CARDS ── */
+    .pdf-list { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.5rem; }
+    .pdf-card {
+      display: flex; align-items: center; gap: 0.9rem;
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: 11px; padding: 0.75rem 1rem;
+      transition: border-color 0.18s, background 0.18s;
+    }
+    .pdf-card:hover { border-color: var(--border-bright); background: var(--surface); }
+    .pdf-card[data-hidden="true"] { display: none; }
+    .pdf-icon {
+      width: 34px; height: 34px; border-radius: 9px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.9rem; background: var(--red-soft);
+    }
+    .pdf-info { flex: 1; min-width: 0; }
+    .pdf-title {
+      font-family: 'Space Grotesk', sans-serif; font-size: 0.85rem; font-weight: 600;
+      color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .pdf-meta { display: flex; align-items: center; gap: 6px; margin-top: 3px; flex-wrap: wrap; }
+    .pdf-size { font-size: 0.68rem; color: var(--text-dim); }
+
+    /* Tags */
+    .pdf-tag {
+      font-size: 0.6rem; font-weight: 700; letter-spacing: 0.06em;
+      text-transform: uppercase; padding: 2px 7px; border-radius: 100px;
+    }
+    .tag-important { background: rgba(255,107,107,0.12); color: var(--red);   border: 1px solid rgba(255,107,107,0.25); }
+    .tag-exam      { background: var(--gold-soft);        color: var(--gold);  border: 1px solid rgba(245,200,66,0.25); }
+    .tag-short     { background: var(--green-soft);       color: var(--green); border: 1px solid rgba(0,229,160,0.25); }
+    .tag-lab       { background: var(--blue-soft);        color: var(--blue);  border: 1px solid rgba(79,142,247,0.25); }
+    .tag-new       { background: var(--purple-soft);      color: var(--purple);border: 1px solid rgba(167,139,250,0.25); }
+
+    .pdf-actions { display: flex; gap: 6px; flex-shrink: 0; }
+    .btn-view, .btn-dl {
+      display: flex; align-items: center; gap: 5px;
+      font-size: 0.72rem; font-weight: 600; border-radius: 7px;
+      padding: 6px 10px; cursor: pointer; border: none;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      transition: background 0.18s, color 0.18s;
+      text-decoration: none;
+    }
+    .btn-view { background: var(--blue-soft); color: var(--blue); }
+    .btn-view:hover { background: var(--blue); color: #fff; }
+    .btn-dl { background: var(--surface); color: var(--text-muted); border: 1px solid var(--border); }
+    .btn-dl:hover { background: var(--green-soft); color: var(--green); border-color: var(--green); }
+
+    /* Empty state */
+    .empty-state {
+      text-align: center; padding: 2rem 1rem;
+      color: var(--text-dim); font-size: 0.85rem;
+    }
+    .empty-state .empty-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+
+    /* ── PDF VIEWER MODAL (nested) ── */
+    .pdf-viewer-overlay {
+      position: fixed; inset: 0; z-index: 300;
+      background: rgba(7,10,20,0.95);
+      display: flex; flex-direction: column;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.22s;
+    }
+    .pdf-viewer-overlay.open { opacity: 1; pointer-events: all; }
+    .pdf-viewer-bar {
+      height: 52px; flex-shrink: 0;
+      background: var(--surface); border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 1.2rem; gap: 1rem;
+    }
+    .pdf-viewer-title { font-family: 'Space Grotesk', sans-serif; font-size: 0.88rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex: 1; }
+    .pdf-viewer-close {
+      background: var(--surface2); border: 1px solid var(--border);
+      color: var(--text-muted); border-radius: 9px; width: 34px; height: 34px;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; font-size: 1rem; transition: background 0.2s, color 0.2s;
+    }
+    .pdf-viewer-close:hover { background: var(--red-soft); color: var(--red); }
+    .pdf-viewer-frame { flex: 1; width: 100%; border: none; }
+    .pdf-loading {
+      position: absolute; inset: 52px 0 0 0;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      color: var(--text-muted); font-size: 0.9rem; gap: 0.8rem;
+      pointer-events: none;
+    }
+    .pdf-loading .spinner {
+      width: 36px; height: 36px; border-radius: 50%;
+      border: 3px solid var(--border); border-top-color: var(--blue);
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    @media (max-width: 580px) {
+      .modal-panel { border-radius: 18px; }
+      .modal-header, .modal-body { padding-left: 1.2rem; padding-right: 1.2rem; }
+      .modal-tabs { padding-left: 1.2rem; }
+      .pdf-actions .btn-view span, .pdf-actions .btn-dl span { display: none; }
+    }
   </style>
 </head>
 <body>
@@ -651,7 +542,9 @@
 <div class="glow-blob glow-blob-1"></div>
 <div class="glow-blob glow-blob-2"></div>
 
-<!-- ── NAV ── -->
+<!-- ══════════════════════════════════════════
+     NAV  (original)
+══════════════════════════════════════════ -->
 <nav>
   <div class="nav-inner">
     <a class="nav-logo" href="#">
@@ -665,90 +558,62 @@
   </div>
 </nav>
 
-<!-- ── MAIN ── -->
+<!-- ══════════════════════════════════════════
+     MAIN
+══════════════════════════════════════════ -->
 <main>
 
-  <!-- HERO -->
+  <!-- HERO (original) -->
   <section class="hero">
     <div class="hero-eyebrow">
       <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4" stroke="currentColor" stroke-width="1.5"/></svg>
       International Islamic University Chittagong
     </div>
     <h1>EEE Department<br><span class="highlight">7th Semester</span></h1>
-    <p class="hero-desc">
-      All study materials, notes &amp; resources for Electrical &amp; Electronics Engineering students — organized by course.
-    </p>
+    <p class="hero-desc">All study materials, notes &amp; resources for Electrical &amp; Electronics Engineering students — organized by course.</p>
     <div class="hero-stats">
-      <div class="stat-item">
-        <div class="stat-num">6</div>
-        <div class="stat-label">Courses</div>
-      </div>
+      <div class="stat-item"><div class="stat-num">6</div><div class="stat-label">Courses</div></div>
       <div class="stat-divider"></div>
-      <div class="stat-item">
-        <div class="stat-num">8</div>
-        <div class="stat-label">Semesters Total</div>
-      </div>
+      <div class="stat-item"><div class="stat-num">8</div><div class="stat-label">Semesters Total</div></div>
       <div class="stat-divider"></div>
-      <div class="stat-item">
-        <div class="stat-num">7th</div>
-        <div class="stat-label">Current Semester</div>
-      </div>
+      <div class="stat-item"><div class="stat-num">7th</div><div class="stat-label">Current Semester</div></div>
     </div>
   </section>
 
-  <!-- SEMESTER PROGRESS -->
+  <!-- SEMESTER PROGRESS (original) -->
   <div class="semester-bar-section">
     <div class="semester-bar-label">Degree Progress — B.Sc. in EEE</div>
     <div class="semester-steps">
-      <div class="semester-step done">
-        <div class="step-circle">1</div>
-        <div class="step-num">1st</div>
-      </div>
-      <div class="semester-step done">
-        <div class="step-circle">2</div>
-        <div class="step-num">2nd</div>
-      </div>
-      <div class="semester-step done">
-        <div class="step-circle">3</div>
-        <div class="step-num">3rd</div>
-      </div>
-      <div class="semester-step done">
-        <div class="step-circle">4</div>
-        <div class="step-num">4th</div>
-      </div>
-      <div class="semester-step done">
-        <div class="step-circle">5</div>
-        <div class="step-num">5th</div>
-      </div>
-      <div class="semester-step done">
-        <div class="step-circle">6</div>
-        <div class="step-num">6th</div>
-      </div>
-      <div class="semester-step current">
-        <div class="step-circle">7</div>
-        <div class="step-num">7th ← You</div>
-      </div>
-      <div class="semester-step">
-        <div class="step-circle">8</div>
-        <div class="step-num">8th</div>
-      </div>
+      <div class="semester-step done"><div class="step-circle">1</div><div class="step-num">1st</div></div>
+      <div class="semester-step done"><div class="step-circle">2</div><div class="step-num">2nd</div></div>
+      <div class="semester-step done"><div class="step-circle">3</div><div class="step-num">3rd</div></div>
+      <div class="semester-step done"><div class="step-circle">4</div><div class="step-num">4th</div></div>
+      <div class="semester-step done"><div class="step-circle">5</div><div class="step-num">5th</div></div>
+      <div class="semester-step done"><div class="step-circle">6</div><div class="step-num">6th</div></div>
+      <div class="semester-step current"><div class="step-circle">7</div><div class="step-num">7th ← You</div></div>
+      <div class="semester-step"><div class="step-circle">8</div><div class="step-num">8th</div></div>
     </div>
   </div>
 
-  <!-- COURSES -->
+  <!-- SECTION HEADER + SEARCH -->
   <div class="section-header">
     <div class="section-icon" style="background:var(--blue-soft); color:var(--blue);">📚</div>
     <div>
       <div class="section-title">7th Semester Courses</div>
-      <div class="section-subtitle">Click any course to open its Google Drive folder</div>
+      <div class="section-subtitle">Click any course to explore study materials</div>
     </div>
     <div class="section-divider"></div>
   </div>
 
-  <div class="courses-grid">
+  <!-- NEW: Global course search -->
+  <div class="search-wrap">
+    <input id="courseSearch" class="search-box" type="search" placeholder="Search courses by name or code…" autocomplete="off">
+  </div>
 
-    <!-- EEE-4701 Control System -->
-    <a class="course-card card-green" href="https://drive.google.com/drive/folders/1ffHeIXviv-bta5GJ0Zynqo9xk5crefLq" target="_blank">
+  <!-- COURSE CARDS (now trigger modal, not href) -->
+  <div class="courses-grid" id="coursesGrid">
+
+    <div class="course-card card-green" data-course="control" data-search="EEE-4701 Control System Theory">
       <div class="card-top">
         <div class="card-icon-wrap icon-green">⚙️</div>
         <div class="card-badge badge-green">Theory</div>
@@ -759,17 +624,16 @@
       </div>
       <div class="card-footer">
         <div class="card-link-text">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-          Open Drive Folder
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 9h6M9 12h6M9 15h4"/></svg>
+          View Materials
         </div>
         <div class="card-arrow arrow-green">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
         </div>
       </div>
-    </a>
+    </div>
 
-    <!-- EEE-4705 Power Electronics -->
-    <a class="course-card card-blue" href="https://drive.google.com/drive/folders/12JeummW1OHh9s2d_s8nYFbprcvMOWmzP" target="_blank">
+    <div class="course-card card-blue" data-course="power-elec" data-search="EEE-4705 Power Electronics Theory">
       <div class="card-top">
         <div class="card-icon-wrap icon-blue">⚡</div>
         <div class="card-badge badge-blue">Theory</div>
@@ -780,17 +644,16 @@
       </div>
       <div class="card-footer">
         <div class="card-link-text">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-          Open Drive Folder
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 9h6M9 12h6M9 15h4"/></svg>
+          View Materials
         </div>
         <div class="card-arrow arrow-blue">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
         </div>
       </div>
-    </a>
+    </div>
 
-    <!-- EEE-4707 Power Plant -->
-    <a class="course-card card-gold" href="https://drive.google.com/drive/folders/1rsVkmxJ9YasXNXNhjYXDE8HktbGo1WHT" target="_blank">
+    <div class="course-card card-gold" data-course="power-plant" data-search="EEE-4707 Power Plant Theory">
       <div class="card-top">
         <div class="card-icon-wrap icon-gold">🏭</div>
         <div class="card-badge badge-gold">Theory</div>
@@ -801,17 +664,16 @@
       </div>
       <div class="card-footer">
         <div class="card-link-text">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-          Open Drive Folder
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 9h6M9 12h6M9 15h4"/></svg>
+          View Materials
         </div>
         <div class="card-arrow arrow-gold">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
         </div>
       </div>
-    </a>
+    </div>
 
-    <!-- EEE-4753 VLSI -->
-    <a class="course-card card-purple" href="https://drive.google.com/drive/folders/1dRxfFnjBEnREQLZZL8VrUdOxK9hhQ7wi" target="_blank">
+    <div class="course-card card-purple" data-course="vlsi" data-search="EEE-4753 VLSI Design Theory">
       <div class="card-top">
         <div class="card-icon-wrap icon-purple">🔬</div>
         <div class="card-badge badge-purple">Theory</div>
@@ -822,17 +684,16 @@
       </div>
       <div class="card-footer">
         <div class="card-link-text">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-          Open Drive Folder
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 9h6M9 12h6M9 15h4"/></svg>
+          View Materials
         </div>
         <div class="card-arrow arrow-purple">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
         </div>
       </div>
-    </a>
+    </div>
 
-    <!-- LAW-4725 -->
-    <a class="course-card card-orange" href="https://drive.google.com/drive/folders/1t4QDgoC60mExWSgUTcRxQHokKdU-EDpM" target="_blank">
+    <div class="course-card card-orange" data-course="law" data-search="LAW-4725 Law General">
       <div class="card-top">
         <div class="card-icon-wrap icon-orange">⚖️</div>
         <div class="card-badge badge-orange">General</div>
@@ -843,17 +704,16 @@
       </div>
       <div class="card-footer">
         <div class="card-link-text">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-          Open Drive Folder
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 9h6M9 12h6M9 15h4"/></svg>
+          View Materials
         </div>
         <div class="card-arrow arrow-orange">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
         </div>
       </div>
-    </a>
+    </div>
 
-    <!-- URIH-4701 -->
-    <a class="course-card card-pink" href="https://drive.google.com/drive/folders/1uEB5gKpokcNMrK8tB0fTmRdFvs_5u46r" target="_blank">
+    <div class="course-card card-pink" data-course="urih" data-search="URIH-4701 Islamic Heritage General">
       <div class="card-top">
         <div class="card-icon-wrap icon-pink">📖</div>
         <div class="card-badge badge-pink">General</div>
@@ -864,67 +724,501 @@
       </div>
       <div class="card-footer">
         <div class="card-link-text">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-          Open Drive Folder
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 9h6M9 12h6M9 15h4"/></svg>
+          View Materials
         </div>
         <div class="card-arrow arrow-pink">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
         </div>
       </div>
-    </a>
+    </div>
 
-  </div>
+  </div><!-- /courses-grid -->
 
-  <!-- EXTRA RESOURCES -->
+  <!-- ══════════════════════════════════════════
+       ADDITIONAL RESOURCES — FIX: Replaced old plain-link section.
+       Now contains:
+         1. Sessional Courses (3 cards with modal)
+         2. Previous Questions (expandable Mid/Final → 6 courses → PDFs)
+  ══════════════════════════════════════════ -->
+
+  <!-- ── SECTION: SESSIONAL COURSES ── -->
   <div class="section-header">
-    <div class="section-icon" style="background:var(--gold-soft); color:var(--gold);">🗂️</div>
+    <div class="section-icon" style="background:var(--blue-soft); color:var(--blue);">🧪</div>
     <div>
-      <div class="section-title">Additional Resources</div>
-      <div class="section-subtitle">Sessional materials &amp; previous question papers</div>
+      <div class="section-title">Sessional Courses</div>
+      <div class="section-subtitle">Click a sessional course to view manual, reports &amp; simulation files</div>
     </div>
     <div class="section-divider"></div>
   </div>
 
-  <div class="resources-grid">
+  <div class="courses-grid" id="sessionalGrid" style="margin-bottom:3.5rem;">
 
-    <a class="resource-card" href="https://drive.google.com/drive/folders/14cKmnGplX724eKsQp8qFBuGvcwB13Y8N" target="_blank">
-      <div class="resource-icon" style="background:var(--blue-soft);">🧪</div>
-      <div class="resource-text">
-        <div class="resource-title">Sessional Courses</div>
-        <div class="resource-desc">Lab reports, practicals &amp; sessional materials</div>
+    <!-- EEE-4702 Control System Sessional -->
+    <div class="course-card card-green" data-course="ses-control" data-search="EEE-4702 Control System Sessional">
+      <div class="card-top">
+        <div class="card-icon-wrap icon-green">⚙️</div>
+        <div class="card-badge badge-green">Sessional</div>
       </div>
-      <div class="resource-arrow">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+      <div class="card-body">
+        <div class="card-code">EEE-4702</div>
+        <div class="card-title">Control System Sessional</div>
       </div>
-    </a>
+      <div class="card-footer">
+        <div class="card-link-text">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 9h6M9 12h6M9 15h4"/></svg>
+          View Materials
+        </div>
+        <div class="card-arrow arrow-green">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </div>
+      </div>
+    </div>
 
-    <a class="resource-card" href="https://drive.google.com/drive/folders/1COCc7DUNG9x4lf-l1bsMWukYoW_r1GTx" target="_blank">
-      <div class="resource-icon" style="background:var(--orange-soft);">📄</div>
-      <div class="resource-text">
-        <div class="resource-title">Previous Questions</div>
-        <div class="resource-desc">Past exam papers for all courses</div>
+    <!-- EEE-4706 Power Electronics Sessional -->
+    <div class="course-card card-blue" data-course="ses-power-elec" data-search="EEE-4706 Power Electronics Sessional">
+      <div class="card-top">
+        <div class="card-icon-wrap icon-blue">⚡</div>
+        <div class="card-badge badge-blue">Sessional</div>
       </div>
-      <div class="resource-arrow">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+      <div class="card-body">
+        <div class="card-code">EEE-4706</div>
+        <div class="card-title">Power Electronics Sessional</div>
       </div>
-    </a>
+      <div class="card-footer">
+        <div class="card-link-text">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 9h6M9 12h6M9 15h4"/></svg>
+          View Materials
+        </div>
+        <div class="card-arrow arrow-blue">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </div>
+      </div>
+    </div>
 
+    <!-- EEE-4754 VLSI Sessional -->
+    <div class="course-card card-purple" data-course="ses-vlsi" data-search="EEE-4754 VLSI Sessional">
+      <div class="card-top">
+        <div class="card-icon-wrap icon-purple">🔬</div>
+        <div class="card-badge badge-purple">Sessional</div>
+      </div>
+      <div class="card-body">
+        <div class="card-code">EEE-4754</div>
+        <div class="card-title">VLSI Sessional</div>
+      </div>
+      <div class="card-footer">
+        <div class="card-link-text">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 9h6M9 12h6M9 15h4"/></svg>
+          View Materials
+        </div>
+        <div class="card-arrow arrow-purple">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /sessionalGrid -->
+
+  <!-- ── SECTION: PREVIOUS QUESTIONS (FIX: expanded with Mid/Final + 6 courses + PDFs) ── -->
+  <div class="section-header">
+    <div class="section-icon" style="background:var(--orange-soft); color:var(--orange);">📄</div>
+    <div>
+      <div class="section-title">Previous Questions</div>
+      <div class="section-subtitle">Past exam papers organised by exam type and course</div>
+    </div>
+    <div class="section-divider"></div>
   </div>
 
-  <!-- NOTICE BANNER -->
+  <!-- PQ outer tabs: Mid / Final -->
+  <div style="margin-bottom:3.5rem;">
+    <div class="modal-tabs" id="pqTabs" style="border-bottom:1px solid var(--border); margin-bottom:1.2rem; padding:0;">
+      <button class="tab-btn active" data-pqtab="pq-mid">📝 Mid Exam</button>
+      <button class="tab-btn" data-pqtab="pq-final">📘 Final Exam</button>
+    </div>
+
+    <!-- PQ MID -->
+    <div class="tab-panel active" id="pq-mid">
+      <div class="accordion" id="acc-pq-mid">
+
+        <div class="accordion-item">
+          <button class="accordion-trigger" onclick="toggleAcc(this)">
+            <div class="accordion-trigger-left"><span class="accordion-label-icon">⚙️</span><span>EEE-4701 — Control System</span><span class="accordion-count">3</span></div>
+            <svg class="accordion-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="accordion-body"><div class="pdf-list">
+            <div class="pdf-card" data-title="mid question 2023 eee-4701">
+              <div class="pdf-icon">📄</div>
+              <div class="pdf-info"><div class="pdf-title">Mid Question 2023</div><div class="pdf-meta"><span class="pdf-size">—</span><span class="pdf-tag tag-exam">exam</span></div></div>
+              <div class="pdf-actions">
+                <button class="btn-view" onclick="openPdf('pdfs/pq/mid/control/mid-2023.pdf','Mid Question 2023 — Control System')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> <span>View</span></button>
+                <a class="btn-dl" href="pdfs/pq/mid/control/mid-2023.pdf" download="Mid Question 2023 — Control System"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> <span>Save</span></a>
+              </div>
+            </div>
+            <div class="pdf-card" data-title="mid question 2022 eee-4701">
+              <div class="pdf-icon">📄</div>
+              <div class="pdf-info"><div class="pdf-title">Mid Question 2022</div><div class="pdf-meta"><span class="pdf-size">—</span><span class="pdf-tag tag-exam">exam</span></div></div>
+              <div class="pdf-actions">
+                <button class="btn-view" onclick="openPdf('pdfs/pq/mid/control/mid-2022.pdf','Mid Question 2022 — Control System')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> <span>View</span></button>
+                <a class="btn-dl" href="pdfs/pq/mid/control/mid-2022.pdf" download="Mid Question 2022 — Control System"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> <span>Save</span></a>
+              </div>
+            </div>
+            <!-- ADDED: EEE-4701 Mid SP26–SP22 -->
+            <div class="pdf-card" data-title="mid question sp26-sp22 eee-4701">
+              <div class="pdf-icon">📄</div>
+              <div class="pdf-info"><div class="pdf-title">Mid Question SP26–SP22</div><div class="pdf-meta"><span class="pdf-size">—</span><span class="pdf-tag tag-exam">exam</span><span class="pdf-tag tag-new">new</span></div></div>
+              <div class="pdf-actions">
+                <button class="btn-view" onclick="openPdf('pdfs/EEE4701_MID_SP26_to_SP22.pdf','Mid Question SP26–SP22')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> <span>View</span></button>
+                <a class="btn-dl" href="pdfs/EEE4701_MID_SP26_to_SP22.pdf" download="Mid Question SP26–SP22"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> <span>Save</span></a>
+              </div>
+            </div>
+          </div></div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-trigger" onclick="toggleAcc(this)">
+            <div class="accordion-trigger-left"><span class="accordion-label-icon">⚡</span><span>EEE-4705 — Power Electronics</span><span class="accordion-count">3</span></div>
+            <svg class="accordion-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="accordion-body"><div class="pdf-list">
+            <div class="pdf-card" data-title="mid question 2023 eee-4705">
+              <div class="pdf-icon">📄</div>
+              <div class="pdf-info"><div class="pdf-title">Mid Question 2023</div><div class="pdf-meta"><span class="pdf-size">—</span><span class="pdf-tag tag-exam">exam</span></div></div>
+              <div class="pdf-actions">
+                <button class="btn-view" onclick="openPdf('pdfs/pq/mid/power-elec/mid-2023.pdf','Mid Question 2023 — Power Electronics')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> <span>View</span></button>
+                <a class="btn-dl" href="pdfs/pq/mid/power-elec/mid-2023.pdf" download="Mid Question 2023 — Power Electronics"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> <span>Save</span></a>
+              </div>
+            </div>
+            <div class="pdf-card" data-title="mid question 2022 eee-4705">
+              <div class="pdf-icon">📄</div>
+              <div class="pdf-info"><div class="pdf-title">Mid Question 2022</div><div class="pdf-meta"><span class="pdf-size">—</span><span class="pdf-tag tag-exam">exam</span></div></div>
+              <div class="pdf-actions">
+                <button class="btn-view" onclick="openPdf('pdfs/pq/mid/power-elec/mid-2022.pdf','Mid Question 2022 — Power Electronics')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> <span>View</span></button>
+                <a class="btn-dl" href="pdfs/pq/mid/power-elec/mid-2022.pdf" download="Mid Question 2022 — Power Electronics"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> <span>Save</span></a>
+              </div>
+            </div>
+            <!-- ADDED: EEE-4705 Mid SP26–SP22 -->
+            <div class="pdf-card" data-title="mid question sp26-sp22 eee-4705">
+              <div class="pdf-icon">📄</div>
+              <div class="pdf-info"><div class="pdf-title">Mid Question SP26–SP22</div><div class="pdf-meta"><span class="pdf-size">—</span><span class="pdf-tag tag-exam">exam</span><span class="pdf-tag tag-new">new</span></div></div>
+              <div class="pdf-actions">
+                <button class="btn-view" onclick="openPdf('pdfs/EEE4705_MID_SP26_to_SP22.pdf','Mid Question SP26–SP22')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> <span>View</span></button>
+                <a class="btn-dl" href="pdfs/EEE4705_MID_SP26_to_SP22.pdf" download="Mid Question SP26–SP22"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> <span>Save</span></a>
+              </div>
+            </div>
+          </div></div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-trigger" onclick="toggleAcc(this)">
+            <div class="accordion-trigger-left"><span class="accordion-label-icon">🏭</span><span>EEE-4707 — Power Plant</span><span class="accordion-count">3</span></div>
+            <svg class="accordion-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="accordion-body"><div class="pdf-list">
+            <div class="pdf-card" data-title="mid question 2023 eee-4707">
+              <div class="pdf-icon">📄</div>
+              <div class="pdf-info"><div class="pdf-title">Mid Question 2023</div><div class="pdf-meta"><span class="pdf-size">—</span><span class="pdf-tag tag-exam">exam</span></div></div>
+              <div class="pdf-actions">
+                <button class="btn-view" onclick="openPdf('pdfs/pq/mid/power-plant/mid-2023.pdf','Mid Question 2023 — Power Plant')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> <span>View</span></button>
+                <a class="btn-dl" href="pdfs/pq/mid/power-plant/mid-2023.pdf" download="Mid Question 2023 — Power Plant"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> <span>Save</span></a>
+              </div>
+            </div>
+            <div class="pdf-card" data-title="mid question 2022 eee-4707">
+              <div class="pdf-icon">📄</div>
+              <div class="pdf-info"><div class="pdf-title">Mid Question 2022</div><div class="pdf-meta"><span class="pdf-size">—</span><span class="pdf-tag tag-exam">exam</span></div></div>
+              <div class="pdf-actions">
+                <button class="btn-view" onclick="openPdf('pdfs/pq/mid/power-plant/mid-2022.pdf','Mid Question 2022 — Power Plant')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> <span>View</span></button>
+                <a class="btn-dl" href="pdfs/pq/mid/power-plant/mid-2022.pdf" download="Mid Question 2022 — Power Plant"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> <span>Save</span></a>
+              </div>
+            </div>
+            <!-- ADDED: EEE-4707 Mid SP26–SP22 -->
+            <div class="pdf-card" data-title="mid question sp26-sp22 eee-4707">
+              <div class="pdf-icon">📄</div>
+              <div class="pdf-info"><div class="pdf-title">Mid Question SP26–SP22</div><div class="pdf-meta"><span class="pdf-size">—</span><span class="pdf-tag tag-exam">exam</span><span class="pdf-tag tag-new">new</span></div></div>
+              <div class="pdf-actions">
+                <button class="btn-view" onclick="openPdf('pdfs/EEE4707_MID_SP26_to_SP22.pdf','Mid Question SP26–SP22')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> <span>View</span></button>
+                <a class="btn-dl" href="pdfs/EEE4707_MID_SP26_to_SP22.pdf" download="Mid Question SP26–SP22"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> <span>Save</span></a>
+              </div>
+            </div>
+          </div></div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-trigger" onclick="toggleAcc(this)">
+            <div class="accordion-trigger-left"><span class="accordion-label-icon">🔬</span><span>EEE-4753 — VLSI Design</span><span class="accordion-count">3</span></div>
+            <svg class="accordion-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="accordion-body"><div class="pdf-list">
+            <div class="pdf-card" data-title="mid question 2023 eee-4753">
+              <div class="pdf-icon">📄</div>
+              <div class="pdf-info"><div class="pdf-title">Mid Question 2023</div><div class="pdf-meta"><span class="pdf-size">—</span><span class="pdf-tag tag-exam">exam</span></div></div>
+              <div class="pdf-actions">
+                <button class="btn-view" onclick="openPdf('pdfs/pq/mid/vlsi/mid-2023.pdf','Mid Question 2023 — VLSI Design')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> <span>View</span></button>
+                <a class="btn-dl" href="pdfs/pq/mid/vlsi/mid-2023.pdf" download="Mid Question 2023 — VLSI Design"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> <span>Save</span></a>
+              </div>
+            </div>
+            <div class="pdf-card" data-title="mid question 2022 eee-4753">
+              <div class="pdf-icon">📄</div>
+              <div class="pdf-info"><div class="pdf-title">Mid Question 2022</div><div class="pdf-meta"><span class="pdf-size">—</span><span class="pdf-tag tag-exam">exam</span></div></div>
+              <div class="pdf-actions">
+                <button class="btn-view" onclick="openPdf('pdfs/pq/mid/vlsi/mid-2022.pdf','Mid Question 2022 — VLSI Design')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> <span>View</span></button>
+                <a class="btn-dl" href="pdfs/pq/mid/vlsi/mid-2022.pdf" download="Mid Question 2022 — VLSI Design"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> <span>Save</span></a>
+              </div>
+            </div>
+            <!-- ADDED: EEE-4753 Mid SP26–SP22 -->
+            <div class="pdf-card" data-title="mid question sp26-sp22 eee-4753">
+              <div class="pdf-icon">📄</div>
+              <div class="pdf-info"><div class="pdf-title">Mid Question SP26–SP22</div><div class="pdf-meta"><span class="pdf-size">—</span><span class="pdf-tag tag-exam">exam</span><span class="pdf-tag tag-new">new</span></div></div>
+              <div class="pdf-actions">
+                <button class="btn-view" onclick="openPdf('pdfs/EEE4753_MID_SP26_to_SP22.pdf','Mid Question SP26–SP22')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> <span>View</span></button>
+                <a class="btn-dl" href="pdfs/EEE4753_MID_SP26_to_SP22.pdf" download="Mid Question SP26–SP22"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> <span>Save</span></a>
+              </div>
+            </div>
+          </div></div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-trigger" onclick="toggleAcc(this)">
+            <div class="accordion-trigger-left"><span class="accordion-label-icon">⚖️</span><span>LAW-4725 — Law</span><span class="accordion-count">3</span></div>
+            <svg class="accordion-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="accordion-body"><div class="pdf-list">
+            <div class="pdf-card" data-title="mid question 2023 law-4725">
+              <div class="pdf-icon">📄</div>
+              <div class="pdf-info"><div class="pdf-title">Mid Question 2023</div><div class="pdf-meta"><span class="pdf-size">—</span><span class="pdf-tag tag-exam">exam</span></div></div>
+              <div class="pdf-actions">
+                <button class="btn-view" onclick="openPdf('pdfs/pq/mid/law/mid-2023.pdf','Mid Question 2023 — Law')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> <span>View</span></button>
+                <a class="btn-dl" href="pdfs/pq/mid/law/mid-2023.pdf" download="Mid Question 2023 — Law"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> <span>Save</span></a>
+              </div>
+            </div>
+            <div class="pdf-card" data-title="mid question 2022 law-4725">
+              <div class="pdf-icon">📄</div>
+              <div class="pdf-info"><div class="pdf-title">Mid Question 2022</div><div class="pdf-meta"><span class="pdf-size">—</span><span class="pdf-tag tag-exam">exam</span></div></div>
+              <div class="pdf-actions">
+                <button class="btn-view" onclick="openPdf('pdfs/pq/mid/law/mid-2022.pdf','Mid Question 2022 — Law')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> <span>View</span></button>
+                <a class="btn-dl" href="pdfs/pq/mid/law/mid-2022.pdf" download="Mid Question 2022 — Law"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> <span>Save</span></a>
+              </div>
+            </div>
+            <!-- ADDED: LAW-4725 Mid SP26–SP22 -->
+            <div class="pdf-card" data-title="mid question sp26-sp22 law-4725">
+              <div class="pdf-icon">📄</div>
+              <div class="pdf-info"><div class="pdf-title">Mid Question SP26–SP22</div><div class="pdf-meta"><span class="pdf-size">—</span><span class="pdf-tag tag-exam">exam</span><span class="pdf-tag tag-new">new</span></div></div>
+              <div class="pdf-actions">
+                <button class="btn-view" onclick="openPdf('pdfs/LAW4725_MID_SP26_to_SP22.pdf','Mid Question SP26–SP22')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> <span>View</span></button>
+                <a class="btn-dl" href="pdfs/LAW4725_MID_SP26_to_SP22.pdf" download="Mid Question SP26–SP22"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> <span>Save</span></a>
+              </div>
+            </div>
+          </div></div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-trigger" onclick="toggleAcc(this)">
+            <div class="accordion-trigger-left"><span class="accordion-label-icon">📖</span><span>URIH-4701 — Islamic Heritage</span><span class="accordion-count">3</span></div>
+            <svg class="accordion-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="accordion-body"><div class="pdf-list">
+            <div class="pdf-card" data-title="mid question 2023 urih-4701">
+              <div class="pdf-icon">📄</div>
+              <div class="pdf-info"><div class="pdf-title">Mid Question 2023</div><div class="pdf-meta"><span class="pdf-size">—</span><span class="pdf-tag tag-exam">exam</span></div></div>
+              <div class="pdf-actions">
+                <button class="btn-view" onclick="openPdf('pdfs/pq/mid/urih/mid-2023.pdf','Mid Question 2023 — Islamic Heritage')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> <span>View</span></button>
+                <a class="btn-dl" href="pdfs/pq/mid/urih/mid-2023.pdf" download="Mid Question 2023 — Islamic Heritage"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> <span>Save</span></a>
+              </div>
+            </div>
+            <div class="pdf-card" data-title="mid question 2022 urih-4701">
+              <div class="pdf-icon">📄</div>
+              <div class="pdf-info"><div class="pdf-title">Mid Question 2022</div><div class="pdf-meta"><span class="pdf-size">—</span><span class="pdf-tag tag-exam">exam</span></div></div>
+              <div class="pdf-actions">
+                <button class="btn-view" onclick="openPdf('pdfs/pq/mid/urih/mid-2022.pdf','Mid Question 2022 — Islamic Heritage')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> <span>View</span></button>
+                <a class="btn-dl" href="pdfs/pq/mid/urih/mid-2022.pdf" download="Mid Question 2022 — Islamic Heritage"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> <span>Save</span></a>
+              </div>
+            </div>
+            <!-- ADDED: URIH-4701 Mid SP26–SP22 -->
+            <div class="pdf-card" data-title="mid question sp26-sp22 urih-4701">
+              <div class="pdf-icon">📄</div>
+              <div class="pdf-info"><div class="pdf-title">Mid Question SP26–SP22</div><div class="pdf-meta"><span class="pdf-size">—</span><span class="pdf-tag tag-exam">exam</span><span class="pdf-tag tag-new">new</span></div></div>
+              <div class="pdf-actions">
+                <button class="btn-view" onclick="openPdf('pdfs/URIH4701_MID_SP26_to_SP22.pdf','Mid Question SP26–SP22')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> <span>View</span></button>
+                <a class="btn-dl" href="pdfs/URIH4701_MID_SP26_to_SP22.pdf" download="Mid Question SP26–SP22"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> <span>Save</span></a>
+              </div>
+            </div>
+          </div></div>
+        </div>
+
+      </div><!-- /acc-pq-mid -->
+    </div><!-- /pq-mid panel -->
+
+    <!-- PQ FINAL -->
+    <div class="tab-panel" id="pq-final">
+      <div class="accordion" id="acc-pq-final">
+
+        <div class="accordion-item">
+          <button class="accordion-trigger" onclick="toggleAcc(this)">
+            <div class="accordion-trigger-left"><span class="accordion-label-icon">⚙️</span><span>EEE-4701 — Control System</span><span class="accordion-count">2</span></div>
+            <svg class="accordion-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="accordion-body"><div class="pdf-list">
+            <div class="pdf-card" data-title="final question 2023 eee-4701">
+              <div class="pdf-icon">📄</div>
+              <div class="pdf-info"><div class="pdf-title">Final Question 2023</div><div class="pdf-meta"><span class="pdf-size">—</span><span class="pdf-tag tag-exam">exam</span><span class="pdf-tag tag-important">important</span></div></div>
+              <div class="pdf-actions">
+                <button class="btn-view" onclick="openPdf('pdfs/pq/final/control/final-2023.pdf','Final Question 2023 — Control System')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> <span>View</span></button>
+                <a class="btn-dl" href="pdfs/pq/final/control/final-2023.pdf" download="Final Question 2023 — Control System"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> <span>Save</span></a>
+              </div>
+            </div>
+            <div class="pdf-card" data-title="final question 2022 eee-4701">
+              <div class="pdf-icon">📄</div>
+              <div class="pdf-info"><div class="pdf-title">Final Question 2022</div><div class="pdf-meta"><span class="pdf-size">—</span><span class="pdf-tag tag-exam">exam</span></div></div>
+              <div class="pdf-actions">
+                <button class="btn-view" onclick="openPdf('pdfs/pq/final/control/final-2022.pdf','Final Question 2022 — Control System')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> <span>View</span></button>
+                <a class="btn-dl" href="pdfs/pq/final/control/final-2022.pdf" download="Final Question 2022 — Control System"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> <span>Save</span></a>
+              </div>
+            </div>
+          </div></div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-trigger" onclick="toggleAcc(this)">
+            <div class="accordion-trigger-left"><span class="accordion-label-icon">⚡</span><span>EEE-4705 — Power Electronics</span><span class="accordion-count">2</span></div>
+            <svg class="accordion-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="accordion-body"><div class="pdf-list">
+            <div class="pdf-card" data-title="final question 2023 eee-4705">
+              <div class="pdf-icon">📄</div>
+              <div class="pdf-info"><div class="pdf-title">Final Question 2023</div><div class="pdf-meta"><span class="pdf-size">—</span><span class="pdf-tag tag-exam">exam</span><span class="pdf-tag tag-important">important</span></div></div>
+              <div class="pdf-actions">
+                <button class="btn-view" onclick="openPdf('pdfs/pq/final/power-elec/final-2023.pdf','Final Question 2023 — Power Electronics')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> <span>View</span></button>
+                <a class="btn-dl" href="pdfs/pq/final/power-elec/final-2023.pdf" download="Final Question 2023 — Power Electronics"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> <span>Save</span></a>
+              </div>
+            </div>
+            <div class="pdf-card" data-title="final question 2022 eee-4705">
+              <div class="pdf-icon">📄</div>
+              <div class="pdf-info"><div class="pdf-title">Final Question 2022</div><div class="pdf-meta"><span class="pdf-size">—</span><span class="pdf-tag tag-exam">exam</span></div></div>
+              <div class="pdf-actions">
+                <button class="btn-view" onclick="openPdf('pdfs/pq/final/power-elec/final-2022.pdf','Final Question 2022 — Power Electronics')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> <span>View</span></button>
+                <a class="btn-dl" href="pdfs/pq/final/power-elec/final-2022.pdf" download="Final Question 2022 — Power Electronics"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> <span>Save</span></a>
+              </div>
+            </div>
+          </div></div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-trigger" onclick="toggleAcc(this)">
+            <div class="accordion-trigger-left"><span class="accordion-label-icon">🏭</span><span>EEE-4707 — Power Plant</span><span class="accordion-count">2</span></div>
+            <svg class="accordion-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="accordion-body"><div class="pdf-list">
+            <div class="pdf-card" data-title="final question 2023 eee-4707">
+              <div class="pdf-icon">📄</div>
+              <div class="pdf-info"><div class="pdf-title">Final Question 2023</div><div class="pdf-meta"><span class="pdf-size">—</span><span class="pdf-tag tag-exam">exam</span><span class="pdf-tag tag-important">important</span></div></div>
+              <div class="pdf-actions">
+                <button class="btn-view" onclick="openPdf('pdfs/pq/final/power-plant/final-2023.pdf','Final Question 2023 — Power Plant')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> <span>View</span></button>
+                <a class="btn-dl" href="pdfs/pq/final/power-plant/final-2023.pdf" download="Final Question 2023 — Power Plant"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> <span>Save</span></a>
+              </div>
+            </div>
+            <div class="pdf-card" data-title="final question 2022 eee-4707">
+              <div class="pdf-icon">📄</div>
+              <div class="pdf-info"><div class="pdf-title">Final Question 2022</div><div class="pdf-meta"><span class="pdf-size">—</span><span class="pdf-tag tag-exam">exam</span></div></div>
+              <div class="pdf-actions">
+                <button class="btn-view" onclick="openPdf('pdfs/pq/final/power-plant/final-2022.pdf','Final Question 2022 — Power Plant')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> <span>View</span></button>
+                <a class="btn-dl" href="pdfs/pq/final/power-plant/final-2022.pdf" download="Final Question 2022 — Power Plant"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> <span>Save</span></a>
+              </div>
+            </div>
+          </div></div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-trigger" onclick="toggleAcc(this)">
+            <div class="accordion-trigger-left"><span class="accordion-label-icon">🔬</span><span>EEE-4753 — VLSI Design</span><span class="accordion-count">2</span></div>
+            <svg class="accordion-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="accordion-body"><div class="pdf-list">
+            <div class="pdf-card" data-title="final question 2023 eee-4753">
+              <div class="pdf-icon">📄</div>
+              <div class="pdf-info"><div class="pdf-title">Final Question 2023</div><div class="pdf-meta"><span class="pdf-size">—</span><span class="pdf-tag tag-exam">exam</span><span class="pdf-tag tag-important">important</span></div></div>
+              <div class="pdf-actions">
+                <button class="btn-view" onclick="openPdf('pdfs/pq/final/vlsi/final-2023.pdf','Final Question 2023 — VLSI Design')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> <span>View</span></button>
+                <a class="btn-dl" href="pdfs/pq/final/vlsi/final-2023.pdf" download="Final Question 2023 — VLSI Design"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> <span>Save</span></a>
+              </div>
+            </div>
+            <div class="pdf-card" data-title="final question 2022 eee-4753">
+              <div class="pdf-icon">📄</div>
+              <div class="pdf-info"><div class="pdf-title">Final Question 2022</div><div class="pdf-meta"><span class="pdf-size">—</span><span class="pdf-tag tag-exam">exam</span></div></div>
+              <div class="pdf-actions">
+                <button class="btn-view" onclick="openPdf('pdfs/pq/final/vlsi/final-2022.pdf','Final Question 2022 — VLSI Design')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> <span>View</span></button>
+                <a class="btn-dl" href="pdfs/pq/final/vlsi/final-2022.pdf" download="Final Question 2022 — VLSI Design"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> <span>Save</span></a>
+              </div>
+            </div>
+          </div></div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-trigger" onclick="toggleAcc(this)">
+            <div class="accordion-trigger-left"><span class="accordion-label-icon">⚖️</span><span>LAW-4725 — Law</span><span class="accordion-count">2</span></div>
+            <svg class="accordion-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="accordion-body"><div class="pdf-list">
+            <div class="pdf-card" data-title="final question 2023 law-4725">
+              <div class="pdf-icon">📄</div>
+              <div class="pdf-info"><div class="pdf-title">Final Question 2023</div><div class="pdf-meta"><span class="pdf-size">—</span><span class="pdf-tag tag-exam">exam</span><span class="pdf-tag tag-important">important</span></div></div>
+              <div class="pdf-actions">
+                <button class="btn-view" onclick="openPdf('pdfs/pq/final/law/final-2023.pdf','Final Question 2023 — Law')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> <span>View</span></button>
+                <a class="btn-dl" href="pdfs/pq/final/law/final-2023.pdf" download="Final Question 2023 — Law"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> <span>Save</span></a>
+              </div>
+            </div>
+            <div class="pdf-card" data-title="final question 2022 law-4725">
+              <div class="pdf-icon">📄</div>
+              <div class="pdf-info"><div class="pdf-title">Final Question 2022</div><div class="pdf-meta"><span class="pdf-size">—</span><span class="pdf-tag tag-exam">exam</span></div></div>
+              <div class="pdf-actions">
+                <button class="btn-view" onclick="openPdf('pdfs/pq/final/law/final-2022.pdf','Final Question 2022 — Law')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> <span>View</span></button>
+                <a class="btn-dl" href="pdfs/pq/final/law/final-2022.pdf" download="Final Question 2022 — Law"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> <span>Save</span></a>
+              </div>
+            </div>
+          </div></div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-trigger" onclick="toggleAcc(this)">
+            <div class="accordion-trigger-left"><span class="accordion-label-icon">📖</span><span>URIH-4701 — Islamic Heritage</span><span class="accordion-count">2</span></div>
+            <svg class="accordion-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="accordion-body"><div class="pdf-list">
+            <div class="pdf-card" data-title="final question 2023 urih-4701">
+              <div class="pdf-icon">📄</div>
+              <div class="pdf-info"><div class="pdf-title">Final Question 2023</div><div class="pdf-meta"><span class="pdf-size">—</span><span class="pdf-tag tag-exam">exam</span><span class="pdf-tag tag-important">important</span></div></div>
+              <div class="pdf-actions">
+                <button class="btn-view" onclick="openPdf('pdfs/pq/final/urih/final-2023.pdf','Final Question 2023 — Islamic Heritage')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> <span>View</span></button>
+                <a class="btn-dl" href="pdfs/pq/final/urih/final-2023.pdf" download="Final Question 2023 — Islamic Heritage"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> <span>Save</span></a>
+              </div>
+            </div>
+            <div class="pdf-card" data-title="final question 2022 urih-4701">
+              <div class="pdf-icon">📄</div>
+              <div class="pdf-info"><div class="pdf-title">Final Question 2022</div><div class="pdf-meta"><span class="pdf-size">—</span><span class="pdf-tag tag-exam">exam</span></div></div>
+              <div class="pdf-actions">
+                <button class="btn-view" onclick="openPdf('pdfs/pq/final/urih/final-2022.pdf','Final Question 2022 — Islamic Heritage')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> <span>View</span></button>
+                <a class="btn-dl" href="pdfs/pq/final/urih/final-2022.pdf" download="Final Question 2022 — Islamic Heritage"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> <span>Save</span></a>
+              </div>
+            </div>
+          </div></div>
+        </div>
+
+      </div><!-- /acc-pq-final -->
+    </div><!-- /pq-final panel -->
+  </div><!-- /PQ section wrapper -->
+
+  <!-- NOTICE BANNER (original) -->
   <div class="notice-banner">
     <div class="notice-icon">🔐</div>
     <div class="notice-content">
       <div class="notice-title">Access Requirement</div>
-      <div class="notice-text">
-        All Google Drive links must be accessed using your <strong>university-provided G Suite email</strong> issued by IIUC authority. Personal Gmail accounts may not have permission to view the files.
-      </div>
+      <div class="notice-text">All Google Drive links must be accessed using your <strong>university-provided G Suite email</strong> issued by IIUC authority. Personal Gmail accounts may not have permission to view the files.</div>
     </div>
   </div>
 
 </main>
 
-<!-- ── FOOTER ── -->
+<!-- ══════════════════════════════════════════
+     FOOTER (original)
+══════════════════════════════════════════ -->
 <footer>
   <div class="footer-grid">
     <div class="footer-left">
@@ -938,10 +1232,570 @@
       <div class="footer-dept" style="margin-top:4px; color: var(--text-dim);">Spring 2026 · 7th Semester</div>
     </div>
   </div>
-  <div class="footer-copy">
-    Prepared by Mohammad Siam (ET-231096) for IIUC EEE students · For educational use only
-  </div>
+  <div class="footer-copy">Prepared by Mohammad Siam (ET-231096) for IIUC EEE students · For educational use only</div>
 </footer>
+
+
+<!-- ══════════════════════════════════════════
+     NEW: COURSE DETAIL MODAL
+══════════════════════════════════════════ -->
+<div class="modal-overlay" id="courseModal" role="dialog" aria-modal="true" aria-label="Course Materials">
+  <div class="modal-panel" id="modalPanel">
+    <div class="modal-header-bar" id="modalBar"></div>
+    <div class="modal-header">
+      <div class="modal-title-group">
+        <div class="modal-icon" id="modalIcon"></div>
+        <div>
+          <div class="modal-course-code" id="modalCode"></div>
+          <div class="modal-course-name" id="modalName"></div>
+          <a class="modal-drive-link" id="modalDriveLink" href="#" target="_blank">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Open Google Drive Folder
+          </a>
+        </div>
+      </div>
+      <button class="modal-close" id="modalClose" aria-label="Close">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+
+    <!-- TAB NAV — FIX: Theory courses only show Mid Term + Final. Sessional tab removed. -->
+    <div class="modal-tabs" id="modalTabs">
+      <button class="tab-btn active" data-tab="midterm">📝 Mid Term <span class="tab-count" id="cnt-midterm">0</span></button>
+      <button class="tab-btn" data-tab="final">📘 Final <span class="tab-count" id="cnt-final">0</span></button>
+      <!-- Sessional tab: hidden by default; shown only for sessional course modals -->
+      <button class="tab-btn" data-tab="sessional" id="tab-sessional" style="display:none;">🧪 Sessional <span class="tab-count" id="cnt-sessional">0</span></button>
+    </div>
+
+    <div class="modal-body">
+      <!-- Per-panel search -->
+      <div class="modal-search-wrap">
+        <input class="modal-search-box" id="modalSearch" type="search" placeholder="Filter files in this tab…" autocomplete="off">
+      </div>
+
+      <!-- MID TERM -->
+      <div class="tab-panel active" id="panel-midterm">
+        <div class="accordion" id="acc-midterm"></div>
+      </div>
+
+      <!-- FINAL -->
+      <div class="tab-panel" id="panel-final">
+        <div class="accordion" id="acc-final"></div>
+      </div>
+
+      <!-- SESSIONAL -->
+      <div class="tab-panel" id="panel-sessional">
+        <div class="accordion" id="acc-sessional"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     NEW: PDF VIEWER MODAL
+══════════════════════════════════════════ -->
+<div class="pdf-viewer-overlay" id="pdfViewer">
+  <div class="pdf-viewer-bar">
+    <div class="pdf-viewer-title" id="pdfTitle">Loading…</div>
+    <button class="pdf-viewer-close" id="pdfViewerClose" aria-label="Close PDF viewer">✕</button>
+  </div>
+  <div class="pdf-loading" id="pdfLoading">
+    <div class="spinner"></div>
+    <span>Loading PDF…</span>
+  </div>
+  <iframe class="pdf-viewer-frame" id="pdfFrame" src="" title="PDF Viewer"></iframe>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     JAVASCRIPT
+     ─ Data layer → Course data
+     ─ Modal open/close
+     ─ Tab switching
+     ─ Accordion
+     ─ PDF viewer (lazy load)
+     ─ Search filters
+══════════════════════════════════════════ -->
+<script>
+/* ─── 1. DATA LAYER ────────────────────────────────────────────────────
+   Theory courses: midterm + final ONLY (sessional key removed).
+   Sessional courses: sessional key ONLY (manual, report, simulation).
+   Tags: "important" | "exam" | "short" | "lab" | "new"
+──────────────────────────────────────────────────────────────────────── */
+const COURSES = {
+  control: {
+    code: 'EEE-4701',
+    name: 'Control System',
+    icon: '⚙️',
+    iconClass: 'icon-green',
+    barColor: 'linear-gradient(90deg,#00e5a0,#4f8ef7)',
+    driveUrl: 'https://drive.google.com/drive/folders/1ffHeIXviv-bta5GJ0Zynqo9xk5crefLq',
+    midterm: {
+      notes: [
+        { title: 'Chapter 1 — Introduction to Control Systems', size: '1.2 MB', tags: ['new'], pdf: 'pdfs/control/mid/notes/ch1-intro.pdf' },
+        { title: 'Chapter 2 — Transfer Functions', size: '2.1 MB', tags: ['important'], pdf: 'pdfs/control/mid/notes/ch2-transfer.pdf' },
+        { title: 'Chapter 3 — Block Diagrams & Signal Flow', size: '1.8 MB', tags: ['exam'], pdf: 'pdfs/control/mid/notes/ch3-block.pdf' },
+      ],
+      slides: [
+        { title: 'Lecture Slides 1–3', size: '3.4 MB', tags: ['short'], pdf: 'pdfs/control/mid/slides/slides-1-3.pdf' },
+        { title: 'Lecture Slides 4–6', size: '2.9 MB', tags: [], pdf: 'pdfs/control/mid/slides/slides-4-6.pdf' },
+      ],
+    },
+    final: {
+      notes: [
+        { title: 'Chapter 4 — Time Domain Analysis', size: '2.3 MB', tags: ['important', 'exam'], pdf: 'pdfs/control/final/notes/ch4-time.pdf' },
+        { title: 'Chapter 5 — Root Locus', size: '1.9 MB', tags: ['exam'], pdf: 'pdfs/control/final/notes/ch5-root.pdf' },
+        { title: 'Chapter 6 — Frequency Domain', size: '2.5 MB', tags: [], pdf: 'pdfs/control/final/notes/ch6-freq.pdf' },
+      ],
+      slides: [
+        { title: 'Lecture Slides 7–9', size: '4.1 MB', tags: [], pdf: 'pdfs/control/final/slides/slides-7-9.pdf' },
+      ],
+    },
+    /* FIX: sessional removed from theory course */
+  },
+
+  'power-elec': {
+    code: 'EEE-4705',
+    name: 'Power Electronics',
+    icon: '⚡',
+    iconClass: 'icon-blue',
+    barColor: 'linear-gradient(90deg,#4f8ef7,#a78bfa)',
+    driveUrl: 'https://drive.google.com/drive/folders/12JeummW1OHh9s2d_s8nYFbprcvMOWmzP',
+    midterm: {
+      notes: [
+        { title: 'Power Semiconductor Devices', size: '2.0 MB', tags: ['important'], pdf: 'pdfs/power-elec/mid/notes/semiconductors.pdf' },
+        { title: 'Rectifiers — Half & Full Wave', size: '1.5 MB', tags: ['exam', 'short'], pdf: 'pdfs/power-elec/mid/notes/rectifiers.pdf' },
+      ],
+      slides: [
+        { title: 'Slides Week 1–4', size: '5.2 MB', tags: ['new'], pdf: 'pdfs/power-elec/mid/slides/week1-4.pdf' },
+      ],
+    },
+    final: {
+      notes: [
+        { title: 'DC–DC Converters', size: '2.8 MB', tags: ['important', 'exam'], pdf: 'pdfs/power-elec/final/notes/dc-dc.pdf' },
+        { title: 'Inverters', size: '2.2 MB', tags: ['exam'], pdf: 'pdfs/power-elec/final/notes/inverters.pdf' },
+        { title: 'AC Voltage Controllers', size: '1.7 MB', tags: [], pdf: 'pdfs/power-elec/final/notes/ac-ctrl.pdf' },
+      ],
+      slides: [
+        { title: 'Slides Week 5–8', size: '6.0 MB', tags: [], pdf: 'pdfs/power-elec/final/slides/week5-8.pdf' },
+      ],
+    },
+    /* FIX: sessional removed from theory course */
+  },
+
+  'power-plant': {
+    code: 'EEE-4707',
+    name: 'Power Plant',
+    icon: '🏭',
+    iconClass: 'icon-gold',
+    barColor: 'linear-gradient(90deg,#f5c842,#fb8c3c)',
+    driveUrl: 'https://drive.google.com/drive/folders/1rsVkmxJ9YasXNXNhjYXDE8HktbGo1WHT',
+    midterm: {
+      notes: [
+        { title: 'Thermal Power Plants', size: '2.4 MB', tags: ['important'], pdf: 'pdfs/power-plant/mid/notes/thermal.pdf' },
+        { title: 'Hydro Power Plants', size: '1.6 MB', tags: ['exam'], pdf: 'pdfs/power-plant/mid/notes/hydro.pdf' },
+      ],
+      slides: [
+        { title: 'Slides 1–5', size: '4.8 MB', tags: ['new'], pdf: 'pdfs/power-plant/mid/slides/s1-5.pdf' },
+      ],
+    },
+    final: {
+      notes: [
+        { title: 'Nuclear Power Plants', size: '2.9 MB', tags: ['exam', 'important'], pdf: 'pdfs/power-plant/final/notes/nuclear.pdf' },
+        { title: 'Renewable Energy Sources', size: '2.1 MB', tags: ['new'], pdf: 'pdfs/power-plant/final/notes/renewable.pdf' },
+        { title: 'Power Economics & Tariff', size: '1.4 MB', tags: ['short', 'exam'], pdf: 'pdfs/power-plant/final/notes/economics.pdf' },
+      ],
+      slides: [
+        { title: 'Slides 6–10', size: '5.5 MB', tags: [], pdf: 'pdfs/power-plant/final/slides/s6-10.pdf' },
+      ],
+    },
+    /* FIX: sessional removed from theory course */
+  },
+
+  vlsi: {
+    code: 'EEE-4753',
+    name: 'VLSI Design',
+    icon: '🔬',
+    iconClass: 'icon-purple',
+    barColor: 'linear-gradient(90deg,#a78bfa,#f472b6)',
+    driveUrl: 'https://drive.google.com/drive/folders/1dRxfFnjBEnREQLZZL8VrUdOxK9hhQ7wi',
+    midterm: {
+      notes: [
+        { title: 'CMOS Technology Fundamentals', size: '1.8 MB', tags: ['important'], pdf: 'pdfs/vlsi/mid/notes/cmos-fund.pdf' },
+        { title: 'MOS Transistor Theory', size: '2.2 MB', tags: ['exam'], pdf: 'pdfs/vlsi/mid/notes/mos-theory.pdf' },
+      ],
+      slides: [
+        { title: 'Slides Week 1–3', size: '3.7 MB', tags: [], pdf: 'pdfs/vlsi/mid/slides/w1-3.pdf' },
+      ],
+    },
+    final: {
+      notes: [
+        { title: 'Logic Gate Design', size: '1.9 MB', tags: ['important', 'exam'], pdf: 'pdfs/vlsi/final/notes/logic-gates.pdf' },
+        { title: 'Layout Design Rules', size: '2.4 MB', tags: ['exam'], pdf: 'pdfs/vlsi/final/notes/layout.pdf' },
+        { title: 'Sequential Circuits in CMOS', size: '2.0 MB', tags: [], pdf: 'pdfs/vlsi/final/notes/sequential.pdf' },
+      ],
+      slides: [
+        { title: 'Slides Week 4–7', size: '4.9 MB', tags: ['new'], pdf: 'pdfs/vlsi/final/slides/w4-7.pdf' },
+      ],
+    },
+    /* FIX: sessional removed from theory course */
+  },
+
+  law: {
+    code: 'LAW-4725',
+    name: 'Law',
+    icon: '⚖️',
+    iconClass: 'icon-orange',
+    barColor: 'linear-gradient(90deg,#fb8c3c,#f5c842)',
+    driveUrl: 'https://drive.google.com/drive/folders/1t4QDgoC60mExWSgUTcRxQHokKdU-EDpM',
+    midterm: {
+      notes: [
+        { title: 'Introduction to Law & Legal System', size: '1.1 MB', tags: ['short'], pdf: 'pdfs/law/mid/notes/intro.pdf' },
+        { title: 'Contract Law Basics', size: '1.5 MB', tags: ['exam', 'important'], pdf: 'pdfs/law/mid/notes/contract.pdf' },
+      ],
+      slides: [
+        { title: 'Slides 1–4', size: '2.6 MB', tags: [], pdf: 'pdfs/law/mid/slides/s1-4.pdf' },
+      ],
+    },
+    final: {
+      notes: [
+        { title: 'Intellectual Property Law', size: '1.8 MB', tags: ['exam'], pdf: 'pdfs/law/final/notes/ip-law.pdf' },
+        { title: 'Consumer Protection Law', size: '1.3 MB', tags: ['short'], pdf: 'pdfs/law/final/notes/consumer.pdf' },
+        { title: 'Cyber Law & ICT Act', size: '1.6 MB', tags: ['exam', 'new'], pdf: 'pdfs/law/final/notes/cyber.pdf' },
+      ],
+      slides: [
+        { title: 'Slides 5–8', size: '3.2 MB', tags: [], pdf: 'pdfs/law/final/slides/s5-8.pdf' },
+      ],
+    },
+    /* FIX: sessional removed from theory course */
+  },
+
+  urih: {
+    code: 'URIH-4701',
+    name: 'Islamic Heritage',
+    icon: '📖',
+    iconClass: 'icon-pink',
+    barColor: 'linear-gradient(90deg,#f472b6,#a78bfa)',
+    driveUrl: 'https://drive.google.com/drive/folders/1uEB5gKpokcNMrK8tB0fTmRdFvs_5u46r',
+    midterm: {
+      notes: [
+        { title: 'Islamic Civilization — Early Period', size: '1.3 MB', tags: ['short'], pdf: 'pdfs/urih/mid/notes/early-period.pdf' },
+        { title: 'Contribution of Muslim Scientists', size: '1.1 MB', tags: ['exam'], pdf: 'pdfs/urih/mid/notes/scientists.pdf' },
+      ],
+      slides: [
+        { title: 'Slides 1–3', size: '2.2 MB', tags: [], pdf: 'pdfs/urih/mid/slides/s1-3.pdf' },
+      ],
+    },
+    final: {
+      notes: [
+        { title: 'Islamic Architecture & Arts', size: '1.6 MB', tags: ['exam'], pdf: 'pdfs/urih/final/notes/architecture.pdf' },
+        { title: 'Modern Muslim World', size: '1.4 MB', tags: ['new'], pdf: 'pdfs/urih/final/notes/modern.pdf' },
+      ],
+      slides: [
+        { title: 'Slides 4–6', size: '2.8 MB', tags: [], pdf: 'pdfs/urih/final/slides/s4-6.pdf' },
+      ],
+    },
+    /* FIX: sessional removed from theory course */
+  },
+
+  /* ── NEW: SESSIONAL COURSES (Additional Resources section) ──
+     These use ONLY the sessional key: manual, report, simulation.
+     The modal shows ONLY the Sessional tab for these courses.
+  ── */
+  'ses-control': {
+    code: 'EEE-4702',
+    name: 'Control System Sessional',
+    icon: '⚙️',
+    iconClass: 'icon-green',
+    barColor: 'linear-gradient(90deg,#00e5a0,#4f8ef7)',
+    driveUrl: 'https://drive.google.com/drive/folders/1A0h9oHpLylSfbb8J4mPKdfUqw2P1nTm5',
+    isSessional: true,
+    sessional: {
+      manual: [
+        { title: 'Lab Manual — Control System', size: '—', tags: ['important'], pdf: 'pdfs/ses-control/manual/manual.pdf' },
+        { title: 'Experiment Guidelines', size: '—', tags: ['lab'], pdf: 'pdfs/ses-control/manual/guidelines.pdf' },
+      ],
+      report: [
+        { title: 'Lab Report 1 — Placeholder', size: '—', tags: ['lab'], pdf: 'pdfs/ses-control/report/report1.pdf' },
+        { title: 'Lab Report 2 — Placeholder', size: '—', tags: ['lab'], pdf: 'pdfs/ses-control/report/report2.pdf' },
+      ],
+      simulation: [
+        { title: 'MATLAB Simulation Guide', size: '—', tags: ['new'], pdf: 'pdfs/ses-control/sim/sim-guide.pdf' },
+      ],
+    },
+  },
+
+  'ses-power-elec': {
+    code: 'EEE-4706',
+    name: 'Power Electronics Sessional',
+    icon: '⚡',
+    iconClass: 'icon-blue',
+    barColor: 'linear-gradient(90deg,#4f8ef7,#a78bfa)',
+    driveUrl: 'https://drive.google.com/drive/folders/1meCndUtGSqp9F3SXZroVN8fh6mTu4oCL',
+    isSessional: true,
+    sessional: {
+      manual: [
+        { title: 'Lab Manual — Power Electronics', size: '—', tags: ['important'], pdf: 'pdfs/ses-power-elec/manual/manual.pdf' },
+        { title: 'Circuit Diagrams Reference', size: '—', tags: ['lab'], pdf: 'pdfs/ses-power-elec/manual/circuits.pdf' },
+      ],
+      report: [
+        { title: 'Lab Report 1 — Rectifier', size: '—', tags: ['lab'], pdf: 'pdfs/ses-power-elec/report/report1.pdf' },
+        { title: 'Lab Report 2 — Chopper', size: '—', tags: ['lab'], pdf: 'pdfs/ses-power-elec/report/report2.pdf' },
+      ],
+      simulation: [
+        { title: 'Simulink Model Files Guide', size: '—', tags: ['new'], pdf: 'pdfs/ses-power-elec/sim/simulink.pdf' },
+      ],
+    },
+  },
+
+  'ses-vlsi': {
+    code: 'EEE-4754',
+    name: 'VLSI Sessional',
+    icon: '🔬',
+    iconClass: 'icon-purple',
+    barColor: 'linear-gradient(90deg,#a78bfa,#f472b6)',
+    driveUrl: 'https://drive.google.com/drive/folders/1eKBjlgCt1Li-kRbGki8oUcFtr0KGWPdD',
+    isSessional: true,
+    sessional: {
+      manual: [
+        { title: 'MAGIC VLSI Tool Manual', size: '—', tags: ['important'], pdf: 'pdfs/ses-vlsi/manual/magic-manual.pdf' },
+        { title: 'Layout Rules Reference', size: '—', tags: ['lab'], pdf: 'pdfs/ses-vlsi/manual/layout-rules.pdf' },
+      ],
+      report: [
+        { title: 'Lab Report 1 — Inverter in MAGIC', size: '—', tags: ['lab', 'new'], pdf: 'pdfs/ses-vlsi/report/report1.pdf' },
+        { title: 'Lab Report 2 — NAND Gate', size: '—', tags: ['lab'], pdf: 'pdfs/ses-vlsi/report/report2.pdf' },
+      ],
+      simulation: [
+        { title: 'SPICE Simulation Notes', size: '—', tags: ['new'], pdf: 'pdfs/ses-vlsi/sim/spice.pdf' },
+      ],
+    },
+  },
+};
+
+/* ─── 2. HELPERS ──────────────────────────────────────────────────── */
+const tagHTML = (tags) => tags.map(t => `<span class="pdf-tag tag-${t}">${t}</span>`).join('');
+
+const SVGICO = {
+  view: `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>`,
+  dl:   `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>`,
+  file: `📄`,
+};
+
+function makePdfCard(file) {
+  return `
+    <div class="pdf-card" data-title="${file.title.toLowerCase()}">
+      <div class="pdf-icon">📄</div>
+      <div class="pdf-info">
+        <div class="pdf-title">${file.title}</div>
+        <div class="pdf-meta">
+          <span class="pdf-size">${file.size}</span>
+          ${tagHTML(file.tags)}
+        </div>
+      </div>
+      <div class="pdf-actions">
+        <button class="btn-view" onclick="openPdf('${file.pdf}','${file.title.replace(/'/g,"\\'")}')">
+          ${SVGICO.view} <span>View</span>
+        </button>
+        <a class="btn-dl" href="${file.pdf}" download="${file.title}">
+          ${SVGICO.dl} <span>Save</span>
+        </a>
+      </div>
+    </div>`;
+}
+
+function makeAccordionItem(labelIcon, label, files, key) {
+  if (!files || files.length === 0) return '';
+  const inner = files.map(makePdfCard).join('');
+  return `
+    <div class="accordion-item" data-acc="${key}">
+      <button class="accordion-trigger" onclick="toggleAcc(this)">
+        <div class="accordion-trigger-left">
+          <span class="accordion-label-icon">${labelIcon}</span>
+          <span>${label}</span>
+          <span class="accordion-count">${files.length}</span>
+        </div>
+        <svg class="accordion-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="accordion-body">
+        <div class="pdf-list">${inner}</div>
+      </div>
+    </div>`;
+}
+
+function countAll(obj) {
+  return Object.values(obj).reduce((s, arr) => s + (arr ? arr.length : 0), 0);
+}
+
+/* ─── 3. MODAL OPEN ─────────────────────────────────────────────────────
+   FIX: Theory courses → show only Mid Term + Final tabs.
+        Sessional courses → show only Sessional tab.
+──────────────────────────────────────────────────────────────────────── */
+function openCourseModal(courseKey) {
+  const c = COURSES[courseKey];
+  if (!c) return;
+
+  // Header
+  document.getElementById('modalBar').style.background = c.barColor;
+  document.getElementById('modalIcon').className = `modal-icon ${c.iconClass}`;
+  document.getElementById('modalIcon').textContent = c.icon;
+  document.getElementById('modalCode').textContent = c.code;
+  document.getElementById('modalName').textContent = c.name;
+  document.getElementById('modalDriveLink').href = c.driveUrl;
+
+  const sesTab = document.getElementById('tab-sessional');
+
+  if (c.isSessional) {
+    /* ── SESSIONAL COURSE: show only Sessional tab ── */
+    sesTab.style.display = '';
+    // Hide Mid/Final tab buttons and panels
+    document.querySelectorAll('.tab-btn[data-tab="midterm"], .tab-btn[data-tab="final"]').forEach(b => b.style.display = 'none');
+
+    const sesAcc = document.getElementById('acc-sessional');
+    sesAcc.innerHTML =
+      makeAccordionItem('📗', 'Manual', c.sessional.manual, 'ses-manual') +
+      makeAccordionItem('📋', 'Report', c.sessional.report, 'ses-report') +
+      makeAccordionItem('💻', 'Simulation / Docs', c.sessional.simulation, 'ses-sim');
+
+    if (!sesAcc.innerHTML.trim()) sesAcc.innerHTML = emptyState('No sessional files uploaded yet.');
+
+    document.getElementById('cnt-sessional').textContent = countAll(c.sessional);
+    switchTab('sessional');
+    sesAcc.querySelectorAll('.accordion-item').forEach((el, i) => { if (i === 0) toggleAcc(el.querySelector('.accordion-trigger'), true); });
+
+  } else {
+    /* ── THEORY COURSE: show only Mid Term + Final tabs ── */
+    sesTab.style.display = 'none';
+    document.querySelectorAll('.tab-btn[data-tab="midterm"], .tab-btn[data-tab="final"]').forEach(b => b.style.display = '');
+
+    const midAcc = document.getElementById('acc-midterm');
+    const finAcc = document.getElementById('acc-final');
+
+    midAcc.innerHTML =
+      makeAccordionItem('📝', 'Notes', c.midterm.notes, 'mid-notes') +
+      makeAccordionItem('🖼️', 'Slides', c.midterm.slides, 'mid-slides');
+
+    finAcc.innerHTML =
+      makeAccordionItem('📝', 'Notes', c.final.notes, 'fin-notes') +
+      makeAccordionItem('🖼️', 'Slides', c.final.slides, 'fin-slides');
+
+    if (!midAcc.innerHTML.trim()) midAcc.innerHTML = emptyState('No mid-term files uploaded yet.');
+    if (!finAcc.innerHTML.trim()) finAcc.innerHTML = emptyState('No final files uploaded yet.');
+
+    document.getElementById('cnt-midterm').textContent = countAll(c.midterm);
+    document.getElementById('cnt-final').textContent   = countAll(c.final);
+
+    switchTab('midterm');
+    midAcc.querySelectorAll('.accordion-item').forEach((el, i) => { if (i === 0) toggleAcc(el.querySelector('.accordion-trigger'), true); });
+  }
+
+  document.getElementById('modalSearch').value = '';
+  document.getElementById('courseModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function emptyState(msg) {
+  return `<div class="empty-state"><div class="empty-icon">📭</div><div>${msg}</div></div>`;
+}
+
+/* ─── 4. MODAL CLOSE ─────────────────────────────────────────────── */
+function closeCourseModal() {
+  document.getElementById('courseModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.getElementById('modalClose').addEventListener('click', closeCourseModal);
+document.getElementById('courseModal').addEventListener('click', function(e) {
+  if (e.target === this) closeCourseModal();
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeCourseModal(); closePdfViewer(); } });
+
+/* ─── 5. TAB SWITCHING ───────────────────────────────────────────── */
+function switchTab(name) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === name));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.toggle('active', p.id === 'panel-' + name));
+  document.getElementById('modalSearch').value = '';
+  filterModalPdfs('');
+}
+document.getElementById('modalTabs').addEventListener('click', e => {
+  const btn = e.target.closest('.tab-btn');
+  if (btn) switchTab(btn.dataset.tab);
+});
+
+/* ─── 6. ACCORDION ───────────────────────────────────────────────── */
+function toggleAcc(trigger, forceOpen) {
+  const item = trigger.closest('.accordion-item');
+  const body = item.querySelector('.accordion-body');
+  const isOpen = item.classList.contains('open');
+  if (forceOpen === true && isOpen) return;
+  item.classList.toggle('open', forceOpen !== undefined ? forceOpen : !isOpen);
+}
+
+/* ─── 7. PDF VIEWER (lazy load) ──────────────────────────────────── */
+function openPdf(path, title) {
+  const viewer = document.getElementById('pdfViewer');
+  const frame  = document.getElementById('pdfFrame');
+  const loading = document.getElementById('pdfLoading');
+
+  document.getElementById('pdfTitle').textContent = title;
+  frame.src = '';
+  loading.style.display = 'flex';
+  viewer.classList.add('open');
+
+  // Lazy: set src only when opened
+  setTimeout(() => {
+    frame.src = path;
+    frame.onload = () => { loading.style.display = 'none'; };
+  }, 60);
+}
+function closePdfViewer() {
+  const viewer = document.getElementById('pdfViewer');
+  viewer.classList.remove('open');
+  setTimeout(() => { document.getElementById('pdfFrame').src = ''; }, 300);
+}
+document.getElementById('pdfViewerClose').addEventListener('click', closePdfViewer);
+
+/* ─── 8. MODAL SEARCH (filters pdf-cards in active tab) ─────────── */
+function filterModalPdfs(query) {
+  const q = query.toLowerCase().trim();
+  const activePanel = document.querySelector('.tab-panel.active');
+  if (!activePanel) return;
+  activePanel.querySelectorAll('.pdf-card').forEach(card => {
+    const match = !q || card.dataset.title.includes(q);
+    card.style.display = match ? '' : 'none';
+  });
+}
+document.getElementById('modalSearch').addEventListener('input', e => filterModalPdfs(e.target.value));
+
+/* ─── 9. HOMEPAGE COURSE SEARCH ─────────────────────────────────── */
+document.getElementById('courseSearch').addEventListener('input', function() {
+  const q = this.value.toLowerCase().trim();
+  document.querySelectorAll('.course-card').forEach(card => {
+    const match = !q || card.dataset.search.toLowerCase().includes(q);
+    card.style.display = match ? '' : 'none';
+  });
+});
+
+/* ─── 10. WIRE UP CARD CLICKS — theory courses ────────────────────── */
+document.querySelectorAll('.course-card[data-course]').forEach(card => {
+  card.addEventListener('click', () => openCourseModal(card.dataset.course));
+});
+
+/* ─── 11. PREVIOUS QUESTIONS TAB SWITCHER ────────────────────────────
+   FIX: Handles the standalone Mid/Final tab row in the PQ section.
+   Uses data-pqtab attribute so it doesn't clash with the modal tabs.
+──────────────────────────────────────────────────────────────────────── */
+document.getElementById('pqTabs').addEventListener('click', function(e) {
+  const btn = e.target.closest('.tab-btn[data-pqtab]');
+  if (!btn) return;
+  const target = btn.dataset.pqtab;
+
+  // Update button active state
+  this.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.pqtab === target));
+
+  // Switch visible panel using same tab-panel / active pattern
+  document.getElementById('pq-mid').classList.toggle('active',   target === 'pq-mid');
+  document.getElementById('pq-final').classList.toggle('active', target === 'pq-final');
+});
+</script>
 
 </body>
 </html>
